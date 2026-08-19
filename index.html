@@ -328,15 +328,10 @@
     return div.innerHTML;
   }
 
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js");
-    });
-  }
-
   displayProducts();
 </script>
 
 </body>
 </html>
 
+                         
