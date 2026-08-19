@@ -1,13 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Exit Warehouse</title>
-
   <meta name="theme-color" content="#111111">
-  <meta name="description" content="Exit Warehouse">
+  <meta name="description" content="Exit Warehouse Inventory">
 
   <link rel="manifest" href="manifest.json">
 
@@ -19,7 +18,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #f4f4f4;
       color: #111;
     }
 
@@ -32,108 +31,314 @@
 
     header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 26px;
     }
 
-    main {
+    .container {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
+      margin: auto;
+      padding: 18px;
     }
 
-    .welcome {
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
       background: white;
-      border-radius: 15px;
-      padding: 30px 20px;
+      border-radius: 12px;
+      padding: 15px 8px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .welcome h2 {
-      margin-top: 0;
+    .stat strong {
+      display: block;
       font-size: 24px;
+      margin-bottom: 5px;
     }
 
-    .welcome p {
-      color: #555;
-      font-size: 16px;
-      line-height: 1.6;
+    .stat span {
+      color: #666;
+      font-size: 13px;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 14px 25px;
-      background: #111;
-      color: white;
-      text-decoration: none;
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 16px;
-      cursor: pointer;
-      border: none;
     }
 
-    .button:hover {
-      background: #333;
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: #111;
+      color: white;
+    }
+
+    .delete-btn {
+      background: #eee;
+      color: #111;
+      padding: 8px 12px;
+    }
+
+    .product {
+      border-top: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .product:first-child {
+      border-top: none;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .product-info {
+      color: #666;
+      margin: 6px 0 10px;
+    }
+
+    .empty {
+      text-align: center;
+      color: #777;
+      padding: 20px 0;
     }
 
     footer {
       text-align: center;
-      padding: 30px 15px;
       color: #777;
-      font-size: 14px;
+      padding: 25px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stat strong {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Exit Warehouse</h1>
-  </header>
+<header>
+  <h1>Exit Warehouse</h1>
+</header>
 
-  <main>
-    <div class="welcome">
-      <h2>Welcome to Exit Warehouse</h2>
+<div class="container">
 
-      <p>
-        Your website is working successfully.
-      </p>
-
-      <p>
-        This website is also prepared to work as a Progressive Web App (PWA).
-      </p>
-
-      <button class="button" onclick="showMessage()">
-        Get Started
-      </button>
-
-      <p id="message"></p>
+  <div class="stats">
+    <div class="stat">
+      <strong id="productCount">0</strong>
+      <span>Products</span>
     </div>
-  </main>
 
-  <footer>
-    © 2026 Exit Warehouse
-  </footer>
+    <div class="stat">
+      <strong id="stockCount">0</strong>
+      <span>Total Stock</span>
+    </div>
 
-  <script>
-    function showMessage() {
-      document.getElementById("message").textContent =
-        "Welcome! Your Exit Warehouse website is working.";
+    <div class="stat">
+      <strong id="valueCount">0</strong>
+      <span>Value</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>➕ Add Product</h2>
+
+    <input id="name" type="text" placeholder="Product name">
+
+    <input id="quantity" type="number" placeholder="Quantity" min="0">
+
+    <input id="price" type="number" placeholder="Price" min="0" step="0.01">
+
+    <button class="add-btn" onclick="addProduct()">
+      Add Product
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>📦 Inventory</h2>
+
+    <input
+      id="search"
+      type="text"
+      placeholder="🔍 Search products..."
+      oninput="displayProducts()"
+    >
+
+    <div id="products"></div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Exit Warehouse
+</footer>
+
+<script>
+  let products = JSON.parse(
+    localStorage.getItem("exitWarehouseProducts") || "[]"
+  );
+
+  function saveProducts() {
+    localStorage.setItem(
+      "exitWarehouseProducts",
+      JSON.stringify(products)
+    );
+  }
+
+  function addProduct() {
+    const name = document.getElementById("name").value.trim();
+    const quantity = Number(document.getElementById("quantity").value);
+    const price = Number(document.getElementById("price").value);
+
+    if (!name) {
+      alert("Please enter a product name.");
+      return;
     }
 
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker.register("sw.js")
-          .then(function () {
-            console.log("Service Worker registered successfully.");
-          })
-          .catch(function (error) {
-            console.log("Service Worker registration failed:", error);
-          });
-      });
+    if (quantity < 0 || !Number.isFinite(quantity)) {
+      alert("Please enter a valid quantity.");
+      return;
     }
-  </script>
+
+    if (price < 0 || !Number.isFinite(price)) {
+      alert("Please enter a valid price.");
+      return;
+    }
+
+    products.push({
+      id: Date.now(),
+      name: name,
+      quantity: quantity,
+      price: price
+    });
+
+    saveProducts();
+
+    document.getElementById("name").value = "";
+    document.getElementById("quantity").value = "";
+    document.getElementById("price").value = "";
+
+    displayProducts();
+  }
+
+  function deleteProduct(id) {
+    products = products.filter(product => product.id !== id);
+
+    saveProducts();
+    displayProducts();
+  }
+
+  function displayProducts() {
+    const container = document.getElementById("products");
+    const search = document.getElementById("search").value.toLowerCase();
+
+    const filtered = products.filter(product =>
+      product.name.toLowerCase().includes(search)
+    );
+
+    if (filtered.length === 0) {
+      container.innerHTML =
+        '<div class="empty">No products found.</div>';
+    } else {
+      container.innerHTML = filtered.map(product => `
+        <div class="product">
+          <div class="product-name">
+            ${escapeHtml(product.name)}
+          </div>
+
+          <div class="product-info">
+            Stock: ${product.quantity}
+            &nbsp; | &nbsp;
+            Price: ${product.price.toFixed(2)}
+          </div>
+
+          <button
+            class="delete-btn"
+            onclick="deleteProduct(${product.id})"
+          >
+            Delete
+          </button>
+        </div>
+      `).join("");
+    }
+
+    updateStats();
+  }
+
+  function updateStats() {
+    const totalStock = products.reduce(
+      (sum, product) => sum + product.quantity,
+      0
+    );
+
+    const totalValue = products.reduce(
+      (sum, product) => sum + (product.quantity * product.price),
+      0
+    );
+
+    document.getElementById("productCount").textContent =
+      products.length;
+
+    document.getElementById("stockCount").textContent =
+      totalStock;
+
+    document.getElementById("valueCount").textContent =
+      totalValue.toFixed(2);
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js");
+    });
+  }
+
+  displayProducts();
+</script>
 
 </body>
 </html>
+```
+  
