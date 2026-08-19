@@ -40,6 +40,25 @@
       color: #cccccc;
     }
 
+    .language-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .language-switcher button {
+      background: white;
+      color: #111;
+      border: 1px solid #ddd;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .status {
       max-width: 1100px;
       margin: 15px auto;
@@ -79,7 +98,7 @@
       background: white;
       border-radius: 25px;
       padding: 28px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.08);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
       border-left: 10px solid;
     }
 
@@ -115,7 +134,7 @@
       border-radius: 25px;
       padding: 30px;
       margin-bottom: 28px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.08);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
     }
 
     .section h2 {
@@ -243,6 +262,36 @@
       color: #777;
     }
 
+    html[dir="rtl"] body {
+      direction: rtl;
+    }
+
+    html[dir="rtl"] .card {
+      border-left: none;
+      border-right: 10px solid;
+    }
+
+    html[dir="rtl"] th,
+    html[dir="rtl"] td {
+      text-align: right;
+    }
+
+    html[dir="rtl"] .card.total {
+      border-right-color: #1976ed;
+    }
+
+    html[dir="rtl"] .card.in {
+      border-right-color: #00a63c;
+    }
+
+    html[dir="rtl"] .card.out {
+      border-right-color: #ef1724;
+    }
+
+    html[dir="rtl"] .card.low {
+      border-right-color: #ffae00;
+    }
+
     @media (max-width: 700px) {
       header h1 {
         font-size: 32px;
@@ -260,6 +309,11 @@
       .card {
         padding: 20px 15px;
         border-left-width: 8px;
+      }
+
+      html[dir="rtl"] .card {
+        border-right-width: 8px;
+        border-left: none;
       }
 
       .card-title {
@@ -288,18 +342,6 @@
         padding: 18px 8px;
       }
     }
-
-    .language-switcher{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
-    .language-switcher button{background:#fff;color:#111;border:1px solid #ddd;padding:10px 16px;border-radius:10px;font-size:16px;font-weight:bold}
-    html[dir="rtl"] body{direction:rtl}
-    html[dir="rtl"] .card{border-left:none;border-right:10px solid}
-    html[dir="rtl"] th,html[dir="rtl"] td{text-align:right}
-    html[dir="rtl"] .card.total{border-right-color:#1976ed}
-    html[dir="rtl"] .card.in{border-right-color:#00a63c}
-    html[dir="rtl"] .card.out{border-right-color:#ef1724}
-    html[dir="rtl"] .card.low{border-right-color:#ffae00}
-    @media (max-width:700px){html[dir="rtl"] .card{border-right-width:8px}}
-
   </style>
 </head>
 
@@ -310,16 +352,17 @@
   <p>Inventory Management System</p>
 
   <div class="language-switcher" aria-label="Language selector">
-    <button type="button" onclick="setLanguage('en')">English</button>
-    <button type="button" onclick="setLanguage('ar')">العربية</button>
-    <button type="button" onclick="setLanguage('te')">తెలుగు</button>
+    <button type="button" onclick="setLanguage('en')">🇬🇧 English</button>
+    <button type="button" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+    <button type="button" onclick="setLanguage('te')">🇮🇳 తెలుగు</button>
   </div>
-
 </header>
 
 <div id="status" class="status"></div>
 
 <div class="container">
+
+  <!-- DASHBOARD -->
 
   <div class="cards">
 
@@ -503,15 +546,326 @@
 
 
   /* =========================================================
+     TRANSLATIONS
+     ========================================================= */
+
+  const translations = {
+
+    en: {
+      pageTitle: "EXIT Warehouse",
+      headerSubtitle: "Inventory Management System",
+
+      totalStock: "📦 Total Stock",
+      stockIn: "🟢 Stock In",
+      stockOut: "🔴 Stock Out",
+      lowStock: "⚠️ Low Stock",
+
+      stockMovement: "Stock Movement",
+      product: "Product",
+      selectProduct: "Select product",
+      quantity: "Quantity",
+      enterQuantity: "Enter quantity",
+
+      lowStockAlert: "⚠️ Low Stock Alert",
+      loading: "Loading...",
+      noLowStock: "✅ No low-stock products",
+
+      currentStock: "📦 Current Stock",
+
+      stockMovementHistory: "📜 Stock Movement History",
+
+      date: "Date",
+      code: "Code",
+      unit: "Unit",
+      stock: "Stock",
+      minimum: "Minimum",
+      status: "Status",
+      worker: "Worker",
+
+      noProducts: "No products found.",
+      noMovements: "No movements yet.",
+
+      low: "LOW",
+      ok: "OK",
+
+      in: "🟢 IN",
+      out: "🔴 OUT",
+
+      connecting: "Connecting to Supabase...",
+      unableProducts: "Unable to load products: ",
+      unableHistory: "Unable to load movement history: ",
+
+      selectProductError: "Please select a product.",
+      quantityError: "Please enter a quantity greater than zero.",
+      productNotFound: "Product not found.",
+
+      notEnough: "Not enough stock. Current stock: ",
+
+      transactionFailed: "Transaction failed: ",
+
+      added: "added to",
+      removed: "removed from",
+
+      stockAfter: "Stock After"
+    },
+
+
+    ar: {
+      pageTitle: "مستودع EXIT",
+      headerSubtitle: "نظام إدارة المخزون",
+
+      totalStock: "📦 إجمالي المخزون",
+      stockIn: "🟢 إدخال المخزون",
+      stockOut: "🔴 إخراج المخزون",
+      lowStock: "⚠️ مخزون منخفض",
+
+      stockMovement: "حركة المخزون",
+      product: "المنتج",
+      selectProduct: "اختر المنتج",
+      quantity: "الكمية",
+      enterQuantity: "أدخل الكمية",
+
+      lowStockAlert: "⚠️ تنبيه انخفاض المخزون",
+      loading: "جارٍ التحميل...",
+      noLowStock: "✅ لا توجد منتجات منخفضة المخزون",
+
+      currentStock: "📦 المخزون الحالي",
+
+      stockMovementHistory: "📜 سجل حركة المخزون",
+
+      date: "التاريخ",
+      code: "الرمز",
+      unit: "الوحدة",
+      stock: "المخزون",
+      minimum: "الحد الأدنى",
+      status: "الحالة",
+      worker: "العامل",
+
+      noProducts: "لم يتم العثور على منتجات.",
+      noMovements: "لا توجد حركات حتى الآن.",
+
+      low: "منخفض",
+      ok: "جيد",
+
+      in: "🟢 إدخال",
+      out: "🔴 إخراج",
+
+      connecting: "جارٍ الاتصال بقاعدة البيانات...",
+      unableProducts: "تعذر تحميل المنتجات: ",
+      unableHistory: "تعذر تحميل سجل الحركة: ",
+
+      selectProductError: "يرجى اختيار منتج.",
+      quantityError: "يرجى إدخال كمية أكبر من صفر.",
+      productNotFound: "لم يتم العثور على المنتج.",
+
+      notEnough: "المخزون غير كافٍ. المخزون الحالي: ",
+
+      transactionFailed: "فشلت العملية: ",
+
+      added: "تمت إضافة",
+      removed: "تم إخراج",
+
+      stockAfter: "المخزون بعد العملية"
+    },
+
+
+    te: {
+      pageTitle: "EXIT గిడ్డంగి",
+      headerSubtitle: "ఇన్వెంటరీ నిర్వహణ వ్యవస్థ",
+
+      totalStock: "📦 మొత్తం స్టాక్",
+      stockIn: "🟢 స్టాక్ ఇన్",
+      stockOut: "🔴 స్టాక్ అవుట్",
+      lowStock: "⚠️ తక్కువ స్టాక్",
+
+      stockMovement: "స్టాక్ కదలిక",
+      product: "ఉత్పత్తి",
+      selectProduct: "ఉత్పత్తిని ఎంచుకోండి",
+      quantity: "పరిమాణం",
+      enterQuantity: "పరిమాణాన్ని నమోదు చేయండి",
+
+      lowStockAlert: "⚠️ తక్కువ స్టాక్ హెచ్చరిక",
+      loading: "లోడ్ అవుతోంది...",
+      noLowStock: "✅ తక్కువ స్టాక్ ఉన్న ఉత్పత్తులు లేవు",
+
+      currentStock: "📦 ప్రస్తుత స్టాక్",
+
+      stockMovementHistory: "📜 స్టాక్ కదలిక చరిత్ర",
+
+      date: "తేదీ",
+      code: "కోడ్",
+      unit: "యూనిట్",
+      stock: "స్టాక్",
+      minimum: "కనిష్టం",
+      status: "స్థితి",
+      worker: "కార్మికుడు",
+
+      noProducts: "ఉత్పత్తులు కనుగొనబడలేదు.",
+      noMovements: "ఇంకా కదలికలు లేవు.",
+
+      low: "తక్కువ",
+      ok: "సరే",
+
+      in: "🟢 ఇన్",
+      out: "🔴 అవుట్",
+
+      connecting: "Supabaseకి కనెక్ట్ అవుతోంది...",
+      unableProducts: "ఉత్పత్తులను లోడ్ చేయడం సాధ్యం కాలేదు: ",
+      unableHistory: "స్టాక్ కదలిక చరిత్రను లోడ్ చేయడం సాధ్యం కాలేదు: ",
+
+      selectProductError: "దయచేసి ఒక ఉత్పత్తిని ఎంచుకోండి.",
+      quantityError: "సున్నా కంటే ఎక్కువ పరిమాణాన్ని నమోదు చేయండి.",
+      productNotFound: "ఉత్పత్తి కనుగొనబడలేదు.",
+
+      notEnough: "తగినంత స్టాక్ లేదు. ప్రస్తుత స్టాక్: ",
+
+      transactionFailed: "లావాదేవీ విఫలమైంది: ",
+
+      added: "జోడించబడింది",
+      removed: "తీసివేయబడింది",
+
+      stockAfter: "తర్వాత స్టాక్"
+    }
+
+  };
+
+
+  let currentLanguage =
+    localStorage.getItem("exitWarehouseLanguage") || "en";
+
+
+  function t(key) {
+    return (
+      translations[currentLanguage]?.[key] ||
+      translations.en[key] ||
+      key
+    );
+  }
+
+
+  /* =========================================================
+     LANGUAGE
+     ========================================================= */
+
+  function setLanguage(lang) {
+
+    if (!translations[lang]) {
+      return;
+    }
+
+    currentLanguage = lang;
+
+    localStorage.setItem(
+      "exitWarehouseLanguage",
+      lang
+    );
+
+    document.documentElement.lang = lang;
+
+    document.documentElement.dir =
+      lang === "ar" ? "rtl" : "ltr";
+
+    document.title = t("pageTitle");
+
+    document.querySelector("header h1").textContent =
+      t("pageTitle");
+
+    document.querySelector("header p").textContent =
+      t("headerSubtitle");
+
+
+    const cards =
+      document.querySelectorAll(".card-title");
+
+    if (cards.length >= 4) {
+      cards[0].textContent = t("totalStock");
+      cards[1].textContent = t("stockIn");
+      cards[2].textContent = t("stockOut");
+      cards[3].textContent = t("lowStock");
+    }
+
+
+    const sections =
+      document.querySelectorAll(".section h2");
+
+    if (sections.length >= 4) {
+      sections[0].textContent =
+        t("stockMovement");
+
+      sections[1].textContent =
+        t("lowStockAlert");
+
+      sections[2].textContent =
+        t("currentStock");
+
+      sections[3].textContent =
+        t("stockMovementHistory");
+    }
+
+
+    const labels =
+      document.querySelectorAll("label");
+
+    if (labels.length >= 2) {
+      labels[0].textContent =
+        t("product");
+
+      labels[1].textContent =
+        t("quantity");
+    }
+
+
+    const quantity =
+      document.getElementById("quantity");
+
+    if (quantity) {
+      quantity.placeholder =
+        t("enterQuantity");
+    }
+
+
+    const stockInBtn =
+      document.getElementById("stockInBtn");
+
+    const stockOutBtn =
+      document.getElementById("stockOutBtn");
+
+
+    if (stockInBtn) {
+      stockInBtn.textContent =
+        "➕ " + t("stockIn");
+    }
+
+    if (stockOutBtn) {
+      stockOutBtn.textContent =
+        "➖ " + t("stockOut");
+    }
+
+
+    renderProductSelect();
+    renderProducts();
+    renderLowStock();
+    renderHistory();
+  }
+
+
+  /* =========================================================
      STATUS MESSAGE
      ========================================================= */
 
-  function showStatus(message, type = "success") {
+  function showStatus(
+    message,
+    type = "success"
+  ) {
 
-    const box = document.getElementById("status");
+    const box =
+      document.getElementById("status");
 
     box.textContent = message;
-    box.className = "status " + type;
+
+    box.className =
+      "status " + type;
+
 
     setTimeout(() => {
       box.className = "status";
@@ -529,18 +883,27 @@
       await supabaseClient
         .from("products")
         .select("*")
-        .order("id", { ascending: true });
+        .order("id", {
+          ascending: true
+        });
+
 
     if (error) {
+
       console.error(error);
+
       showStatus(
-        t("unableProducts") + error.message,
+        t("unableProducts") +
+        error.message,
         "error"
       );
+
       return;
     }
 
+
     products = data || [];
+
 
     renderProductSelect();
     renderProducts();
@@ -556,25 +919,36 @@
   function renderProductSelect() {
 
     const select =
-      document.getElementById("productSelect");
+      document.getElementById(
+        "productSelect"
+      );
+
 
     select.innerHTML =
-      `<option value="">${t("selectProduct")}</option>`;
+      `<option value="">${escapeHtml(
+        t("selectProduct")
+      )}</option>`;
+
 
     products.forEach(product => {
 
       const option =
         document.createElement("option");
 
-      option.value = product.id;
+
+      option.value =
+        product.id;
+
 
       option.textContent =
-        `${product.name} — Stock: ${formatNumber(product.qty)}`;
+        `${product.name} — Stock: ${formatNumber(
+          product.qty
+        )}`;
+
 
       select.appendChild(option);
 
     });
-
   }
 
 
@@ -585,51 +959,83 @@
   function renderProducts() {
 
     const table =
-      document.getElementById("productsTable");
+      document.getElementById(
+        "productsTable"
+      );
+
 
     if (!products.length) {
 
       table.innerHTML =
-        `<tr><td colspan="6">${t("noProducts")}</td></tr>`;
+        `<tr>
+          <td colspan="6">
+            ${escapeHtml(t("noProducts"))}
+          </td>
+        </tr>`;
 
       return;
     }
 
+
     table.innerHTML = "";
+
 
     products.forEach(product => {
 
       const stock =
         Number(product.qty || 0);
 
+
       const minimum =
         Number(product.min || 0);
+
 
       const isLow =
         stock <= minimum;
 
+
       const row =
         document.createElement("tr");
 
+
       row.innerHTML = `
         <td>${escapeHtml(product.name)}</td>
-        <td>${escapeHtml(product.code ?? "")}</td>
-        <td>${escapeHtml(product.unit ?? "")}</td>
-        <td><strong>${formatNumber(stock)}</strong></td>
-        <td>${formatNumber(minimum)}</td>
+
+        <td>${escapeHtml(
+          product.code ?? ""
+        )}</td>
+
+        <td>${escapeHtml(
+          product.unit ?? ""
+        )}</td>
+
+        <td>
+          <strong>
+            ${formatNumber(stock)}
+          </strong>
+        </td>
+
+        <td>
+          ${formatNumber(minimum)}
+        </td>
+
         <td>
           ${
             isLow
-              ? `<span class="low-badge">${t("low")}</span>`
-              : `<span class="ok">${t("ok")}</span>`
+              ? `<span class="low-badge">
+                   ${escapeHtml(t("low"))}
+                 </span>`
+              : `<span class="ok">
+                   ${escapeHtml(t("ok"))}
+                 </span>`
           }
         </td>
       `;
 
+
       table.appendChild(row);
 
     });
-
   }
 
 
@@ -640,391 +1046,5 @@
   function renderLowStock() {
 
     const box =
-      document.getElementById("lowStockList");
-
-    const lowProducts =
-      products.filter(product =>
-        Number(product.qty || 0) <=
-        Number(product.min || 0)
-      );
-
-    if (!lowProducts.length) {
-
-      box.innerHTML =
-        `<div class="no-low">${t("noLowStock")}</div>`;
-
-      return;
-    }
-
-    box.innerHTML = "";
-
-    lowProducts.forEach(product => {
-
-      const div =
-        document.createElement("div");
-
-      div.className = "alert";
-
-      div.innerHTML =
-        `⚠️ <strong>${escapeHtml(product.name)}</strong>
-         — Stock: ${formatNumber(product.qty)}
-         / Minimum: ${formatNumber(product.min)}`;
-
-      box.appendChild(div);
-
-    });
-
-  }
-
-
-  /* =========================================================
-     DASHBOARD
-     ========================================================= */
-
-  function updateDashboard() {
-
-    const total =
-      products.reduce(
-        (sum, product) =>
-          sum + Number(product.qty || 0),
-        0
-      );
-
-    const low =
-      products.filter(product =>
-        Number(product.qty || 0) <=
-        Number(product.min || 0)
-      ).length;
-
-    const stockIn =
-      moves
-        .filter(move =>
-          String(move.type).toLowerCase() === "in"
-        )
-        .reduce(
-          (sum, move) =>
-            sum + Number(move.qty || 0),
-          0
-        );
-
-    const stockOut =
-      moves
-        .filter(move =>
-          String(move.type).toLowerCase() === "out"
-        )
-        .reduce(
-          (sum, move) =>
-            sum + Number(move.qty || 0),
-          0
-        );
-
-    document.getElementById("totalStock").textContent =
-      formatNumber(total);
-
-    document.getElementById("stockIn").textContent =
-      formatNumber(stockIn);
-
-    document.getElementById("stockOut").textContent =
-      formatNumber(stockOut);
-
-    document.getElementById("lowStock").textContent =
-      low;
-
-  }
-
-
-  /* =========================================================
-     LOAD MOVEMENT HISTORY
-     ========================================================= */
-
-  async function loadMoves() {
-
-    const { data, error } =
-      await supabaseClient
-        .from("moves")
-        .select("*")
-        .order("time", { ascending: false })
-        .limit(100);
-
-    if (error) {
-
-      console.error(error);
-
-      showStatus(
-        t("unableHistory") +
-        error.message,
-        "error"
-      );
-
-      return;
-    }
-
-    moves = data || [];
-
-    renderHistory();
-    updateDashboard();
-
-  }
-
-
-  /* =========================================================
-     HISTORY TABLE
-     ========================================================= */
-
-  function renderHistory() {
-
-    const table =
-      document.getElementById("historyTable");
-
-    if (!moves.length) {
-
-      table.innerHTML =
-        `<tr><td colspan="6">${t("noMovements")}</td></tr>`;
-
-      return;
-    }
-
-    table.innerHTML = "";
-
-    moves.forEach(move => {
-
-      const row =
-        document.createElement("tr");
-
-      const type =
-        String(move.type || "").toLowerCase();
-
-      const date =
-        move.time
-          ? new Date(move.time).toLocaleString()
-          : "";
-
-      row.innerHTML = `
-        <td>${escapeHtml(date)}</td>
-        <td>${escapeHtml(move.name || "")}</td>
-        <td>
-          ${
-            type === "in"
-              ? `<span class="in-badge">${t("in")}</span>`
-              : `<span class="out-badge">${t("out")}</span>`
-          }
-        </td>
-        <td>
-          ${
-            type === "out"
-              ? "-"
-              : "+"
-          }${formatNumber(move.qty)}
-        </td>
-        <td>—</td>
-        <td>${escapeHtml(move.worker || "")}</td>
-      `;
-
-      table.appendChild(row);
-
-    });
-
-  }
-
-
-  /* =========================================================
-     STOCK IN / STOCK OUT
-     IMPORTANT:
-     Uses record_stock_movement() RPC.
-     This prevents the double-stock problem caused by
-     inserting directly into stock_transactions.
-     ========================================================= */
-
-  async function makeMovement(type) {
-
-    const productId =
-      document.getElementById("productSelect").value;
-
-    const quantityValue =
-      document.getElementById("quantity").value;
-
-    const quantity =
-      Number(quantityValue);
-
-    if (!productId) {
-
-      showStatus(
-        t("selectProductError"),
-        "error"
-      );
-
-      return;
-    }
-
-    if (!quantity || quantity <= 0) {
-
-      showStatus(
-        t("quantityError"),
-        "error"
-      );
-
-      return;
-    }
-
-    const product =
-      products.find(
-        p => String(p.id) === String(productId)
-      );
-
-    if (!product) {
-
-      showStatus(
-        t("productNotFound"),
-        "error"
-      );
-
-      return;
-    }
-
-    if (
-      type === "out" &&
-      Number(product.qty) < quantity
-    ) {
-
-      showStatus(
-        `Not enough stock. Current stock: ${formatNumber(product.qty)}`,
-        "error"
-      );
-
-      return;
-    }
-
-
-    document.getElementById("stockInBtn").disabled = true;
-    document.getElementById("stockOutBtn").disabled = true;
-
-
-    const { data, error } =
-      await supabaseClient.rpc(
-        "record_stock_movement",
-        {
-          p_product_id: Number(productId),
-          p_type: type,
-          p_qty: quantity,
-          p_note: "",
-          p_worker: ""
-        }
-      );
-
-
-    document.getElementById("stockInBtn").disabled = false;
-    document.getElementById("stockOutBtn").disabled = false;
-
-
-    if (error) {
-
-      console.error(error);
-
-      showStatus(
-        t("transactionFailed") + error.message,
-        "error"
-      );
-
-      return;
-    }
-
-
-    document.getElementById("quantity").value = "";
-    document.getElementById("productSelect").value = "";
-
-
-    showStatus(
-      type === "in"
-        ? `✅ ${formatNumber(quantity)} ${t("added")} ${product.name}`
-        : `✅ ${formatNumber(quantity)} ${t("removed")} ${product.name}`,
-      "success"
-    );
-
-
-    await loadProducts();
-    await loadMoves();
-
-  }
-
-
-  /* =========================================================
-     HELPERS
-     ========================================================= */
-
-  function formatNumber(value) {
-
-    const number = Number(value || 0);
-
-    if (Number.isInteger(number)) {
-      return number.toString();
-    }
-
-    return number.toFixed(2);
-  }
-
-
-  function escapeHtml(value) {
-
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-
-
-  const translations = {
-    en:{pageTitle:"EXIT Warehouse",headerSubtitle:"Inventory Management System",totalStock:"📦 Total Stock",stockIn:"🟢 Stock In",stockOut:"🔴 Stock Out",lowStock:"⚠️ Low Stock",stockMovement:"Stock Movement",product:"Product",selectProduct:"Select product",quantity:"Quantity",enterQuantity:"Enter quantity",lowStockAlert:"⚠️ Low Stock Alert",loading:"Loading...",noLowStock:"✅ No low-stock products",currentStock:"📦 Current Stock",stockMovementHistory:"📜 Stock Movement History",date:"Date",code:"Code",unit:"Unit",stock:"Stock",minimum:"Minimum",status:"Status",worker:"Worker",noProducts:"No products found.",noMovements:"No movements yet.",low:"LOW",ok:"OK",in:"🟢 IN",out:"🔴 OUT",connecting:t("connecting"),unableProducts:t("unableProducts"),unableHistory:t("unableHistory"),selectProductError:t("selectProductError"),quantityError:t("quantityError"),productNotFound:t("productNotFound"),notEnough:t("notEnough"),transactionFailed:t("transactionFailed"),added:"added to",removed:"removed from"},
-    ar:{pageTitle:"مستودع EXIT",headerSubtitle:"نظام إدارة المخزون",totalStock:"📦 إجمالي المخزون",stockIn:"🟢 إدخال المخزون",stockOut:"🔴 إخراج المخزون",lowStock:"⚠️ مخزون منخفض",stockMovement:"حركة المخزون",product:"المنتج",selectProduct:"اختر المنتج",quantity:"الكمية",enterQuantity:"أدخل الكمية",lowStockAlert:"⚠️ تنبيه انخفاض المخزون",loading:"جارٍ التحميل...",noLowStock:"✅ لا توجد منتجات منخفضة المخزون",currentStock:"📦 المخزون الحالي",stockMovementHistory:"📜 سجل حركة المخزون",date:"التاريخ",code:"الرمز",unit:"الوحدة",stock:"المخزون",minimum:"الحد الأدنى",status:"الحالة",worker:"العامل",noProducts:"لم يتم العثور على منتجات.",noMovements:"لا توجد حركات حتى الآن.",low:"منخفض",ok:"جيد",in:"🟢 إدخال",out:"🔴 إخراج",connecting:"جارٍ الاتصال بـ Supabase...",unableProducts:"تعذر تحميل المنتجات: ",unableHistory:"تعذر تحميل سجل الحركة: ",selectProductError:"يرجى اختيار منتج.",quantityError:"يرجى إدخال كمية أكبر من صفر.",productNotFound:"لم يتم العثور على المنتج.",notEnough:"المخزون غير كافٍ. المخزون الحالي: ",transactionFailed:"فشلت العملية: ",added:"تمت إضافة",removed:"تم إخراج"},
-    te:{pageTitle:"EXIT గిడ్డంగి",headerSubtitle:"ఇన్వెంటరీ నిర్వహణ వ్యవస్థ",totalStock:"📦 మొత్తం స్టాక్",stockIn:"🟢 స్టాక్ ఇన్",stockOut:"🔴 స్టాక్ అవుట్",lowStock:"⚠️ తక్కువ స్టాక్",stockMovement:"స్టాక్ కదలిక",product:"ఉత్పత్తి",selectProduct:"ఉత్పత్తిని ఎంచుకోండి",quantity:"పరిమాణం",enterQuantity:"పరిమాణాన్ని నమోదు చేయండి",lowStockAlert:"⚠️ తక్కువ స్టాక్ హెచ్చరిక",loading:"లోడ్ అవుతోంది...",noLowStock:"✅ తక్కువ స్టాక్ ఉన్న ఉత్పత్తులు లేవు",currentStock:"📦 ప్రస్తుత స్టాక్",stockMovementHistory:"📜 స్టాక్ కదలిక చరిత్ర",date:"తేదీ",code:"కోడ్",unit:"యూనిట్",stock:"స్టాక్",minimum:"కనిష్టం",status:"స్థితి",worker:"కార్మికుడు",noProducts:"ఉత్పత్తులు కనుగొనబడలేదు.",noMovements:"ఇంకా కదలికలు లేవు.",low:"తక్కువ",ok:"సరే",in:"🟢 ఇన్",out:"🔴 అవుట్",connecting:"Supabaseకి కనెక్ట్ అవుతోంది...",unableProducts:"ఉత్పత్తులను లోడ్ చేయడం సాధ్యం కాలేదు: ",unableHistory:"స్టాక్ కదలిక చరిత్రను లోడ్ చేయడం సాధ్యం కాలేదు: ",selectProductError:"దయచేసి ఒక ఉత్పత్తిని ఎంచుకోండి.",quantityError:"సున్నా కంటే ఎక్కువ పరిమాణాన్ని నమోదు చేయండి.",productNotFound:"ఉత్పత్తి కనుగొనబడలేదు.",notEnough:"తగినంత స్టాక్ లేదు. ప్రస్తుత స్టాక్: ",transactionFailed:"లావాదేవీ విఫలమైంది: ",added:"జోడించబడింది",removed:"తీసివేయబడింది"}
-  };
-  let currentLanguage=localStorage.getItem("exitWarehouseLanguage")||"en";
-  function t(k){return translations[currentLanguage][k]||translations.en[k]||k}
-  function setLanguage(lang){
-    if(!translations[lang])return;
-    currentLanguage=lang;localStorage.setItem("exitWarehouseLanguage",lang);
-    document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-    document.title=t("pageTitle");
-    document.querySelector("header h1").textContent=t("pageTitle");
-    document.querySelector("header p").textContent=t("headerSubtitle");
-    const c=document.querySelectorAll(".card-title");
-    if(c.length>=4){c[0].textContent=t("totalStock");c[1].textContent=t("stockIn");c[2].textContent=t("stockOut");c[3].textContent=t("lowStock")}
-    const s=document.querySelectorAll(".section h2");
-    if(s.length>=4){s[0].textContent=t("stockMovement");s[1].textContent=t("lowStockAlert");s[2].textContent=t("currentStock");s[3].textContent=t("stockMovementHistory")}
-    const labels=document.querySelectorAll("label");
-    if(labels.length>=2){labels[0].textContent=t("product");labels[1].textContent=t("quantity")}
-    const q=document.getElementById("quantity");if(q)q.placeholder=t("enterQuantity");
-    const b1=document.getElementById("stockInBtn"),b2=document.getElementById("stockOutBtn");
-    if(b1)b1.textContent="➕ "+t("stockIn");if(b2)b2.textContent="➖ "+t("stockOut");
-    renderProductSelect();renderProducts();renderLowStock();renderHistory();
-  }
-
-  /* =========================================================
-     START APPLICATION
-     ========================================================= */
-
-  async function startApp() {
-
-    showStatus(
-      t("connecting"),
-      "success"
-    );
-
-    await loadProducts();
-    await loadMoves();
-
-    document.getElementById("status").className =
-      "status";
-
-  }
-
-
-  startApp();
-  setLanguage(currentLanguage);
-
-</script>
-
-</body>
-      </html>
+      document.getElementById(
+     
