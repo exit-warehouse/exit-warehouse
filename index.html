@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#111111">
   <meta name="description" content="EXIT Warehouse Inventory Management">
   <title>EXIT Warehouse</title>
+  <link rel="manifest" href="./manifest.json">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -287,6 +288,18 @@
         padding: 18px 8px;
       }
     }
+
+    .language-switcher{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+    .language-switcher button{background:#fff;color:#111;border:1px solid #ddd;padding:10px 16px;border-radius:10px;font-size:16px;font-weight:bold}
+    html[dir="rtl"] body{direction:rtl}
+    html[dir="rtl"] .card{border-left:none;border-right:10px solid}
+    html[dir="rtl"] th,html[dir="rtl"] td{text-align:right}
+    html[dir="rtl"] .card.total{border-right-color:#1976ed}
+    html[dir="rtl"] .card.in{border-right-color:#00a63c}
+    html[dir="rtl"] .card.out{border-right-color:#ef1724}
+    html[dir="rtl"] .card.low{border-right-color:#ffae00}
+    @media (max-width:700px){html[dir="rtl"] .card{border-right-width:8px}}
+
   </style>
 </head>
 
@@ -295,6 +308,13 @@
 <header>
   <h1>EXIT Warehouse</h1>
   <p>Inventory Management System</p>
+
+  <div class="language-switcher" aria-label="Language selector">
+    <button type="button" onclick="setLanguage('en')">English</button>
+    <button type="button" onclick="setLanguage('ar')">العربية</button>
+    <button type="button" onclick="setLanguage('te')">తెలుగు</button>
+  </div>
+
 </header>
 
 <div id="status" class="status"></div>
@@ -514,7 +534,7 @@
     if (error) {
       console.error(error);
       showStatus(
-        "Unable to load products: " + error.message,
+        t("unableProducts") + error.message,
         "error"
       );
       return;
@@ -539,7 +559,7 @@
       document.getElementById("productSelect");
 
     select.innerHTML =
-      '<option value="">Select product</option>';
+      `<option value="">${t("selectProduct")}</option>`;
 
     products.forEach(product => {
 
@@ -570,7 +590,7 @@
     if (!products.length) {
 
       table.innerHTML =
-        '<tr><td colspan="6">No products found.</td></tr>';
+        `<tr><td colspan="6">${t("noProducts")}</td></tr>`;
 
       return;
     }
@@ -600,8 +620,8 @@
         <td>
           ${
             isLow
-              ? '<span class="low-badge">LOW</span>'
-              : '<span class="ok">OK</span>'
+              ? `<span class="low-badge">${t("low")}</span>`
+              : `<span class="ok">${t("ok")}</span>`
           }
         </td>
       `;
@@ -631,7 +651,7 @@
     if (!lowProducts.length) {
 
       box.innerHTML =
-        '<div class="no-low">✅ No low-stock products</div>';
+        `<div class="no-low">${t("noLowStock")}</div>`;
 
       return;
     }
@@ -731,7 +751,7 @@
       console.error(error);
 
       showStatus(
-        "Unable to load movement history: " +
+        t("unableHistory") +
         error.message,
         "error"
       );
@@ -759,7 +779,7 @@
     if (!moves.length) {
 
       table.innerHTML =
-        '<tr><td colspan="6">No movements yet.</td></tr>';
+        `<tr><td colspan="6">${t("noMovements")}</td></tr>`;
 
       return;
     }
@@ -785,8 +805,8 @@
         <td>
           ${
             type === "in"
-              ? '<span class="in-badge">🟢 IN</span>'
-              : '<span class="out-badge">🔴 OUT</span>'
+              ? `<span class="in-badge">${t("in")}</span>`
+              : `<span class="out-badge">${t("out")}</span>`
           }
         </td>
         <td>
@@ -829,7 +849,7 @@
     if (!productId) {
 
       showStatus(
-        "Please select a product.",
+        t("selectProductError"),
         "error"
       );
 
@@ -839,7 +859,7 @@
     if (!quantity || quantity <= 0) {
 
       showStatus(
-        "Please enter a quantity greater than zero.",
+        t("quantityError"),
         "error"
       );
 
@@ -854,7 +874,7 @@
     if (!product) {
 
       showStatus(
-        "Product not found.",
+        t("productNotFound"),
         "error"
       );
 
@@ -901,7 +921,7 @@
       console.error(error);
 
       showStatus(
-        "Transaction failed: " + error.message,
+        t("transactionFailed") + error.message,
         "error"
       );
 
@@ -915,8 +935,8 @@
 
     showStatus(
       type === "in"
-        ? `✅ ${formatNumber(quantity)} added to ${product.name}`
-        : `✅ ${formatNumber(quantity)} removed from ${product.name}`,
+        ? `✅ ${formatNumber(quantity)} ${t("added")} ${product.name}`
+        : `✅ ${formatNumber(quantity)} ${t("removed")} ${product.name}`,
       "success"
     );
 
@@ -954,6 +974,33 @@
   }
 
 
+
+  const translations = {
+    en:{pageTitle:"EXIT Warehouse",headerSubtitle:"Inventory Management System",totalStock:"📦 Total Stock",stockIn:"🟢 Stock In",stockOut:"🔴 Stock Out",lowStock:"⚠️ Low Stock",stockMovement:"Stock Movement",product:"Product",selectProduct:"Select product",quantity:"Quantity",enterQuantity:"Enter quantity",lowStockAlert:"⚠️ Low Stock Alert",loading:"Loading...",noLowStock:"✅ No low-stock products",currentStock:"📦 Current Stock",stockMovementHistory:"📜 Stock Movement History",date:"Date",code:"Code",unit:"Unit",stock:"Stock",minimum:"Minimum",status:"Status",worker:"Worker",noProducts:"No products found.",noMovements:"No movements yet.",low:"LOW",ok:"OK",in:"🟢 IN",out:"🔴 OUT",connecting:t("connecting"),unableProducts:t("unableProducts"),unableHistory:t("unableHistory"),selectProductError:t("selectProductError"),quantityError:t("quantityError"),productNotFound:t("productNotFound"),notEnough:t("notEnough"),transactionFailed:t("transactionFailed"),added:"added to",removed:"removed from"},
+    ar:{pageTitle:"مستودع EXIT",headerSubtitle:"نظام إدارة المخزون",totalStock:"📦 إجمالي المخزون",stockIn:"🟢 إدخال المخزون",stockOut:"🔴 إخراج المخزون",lowStock:"⚠️ مخزون منخفض",stockMovement:"حركة المخزون",product:"المنتج",selectProduct:"اختر المنتج",quantity:"الكمية",enterQuantity:"أدخل الكمية",lowStockAlert:"⚠️ تنبيه انخفاض المخزون",loading:"جارٍ التحميل...",noLowStock:"✅ لا توجد منتجات منخفضة المخزون",currentStock:"📦 المخزون الحالي",stockMovementHistory:"📜 سجل حركة المخزون",date:"التاريخ",code:"الرمز",unit:"الوحدة",stock:"المخزون",minimum:"الحد الأدنى",status:"الحالة",worker:"العامل",noProducts:"لم يتم العثور على منتجات.",noMovements:"لا توجد حركات حتى الآن.",low:"منخفض",ok:"جيد",in:"🟢 إدخال",out:"🔴 إخراج",connecting:"جارٍ الاتصال بـ Supabase...",unableProducts:"تعذر تحميل المنتجات: ",unableHistory:"تعذر تحميل سجل الحركة: ",selectProductError:"يرجى اختيار منتج.",quantityError:"يرجى إدخال كمية أكبر من صفر.",productNotFound:"لم يتم العثور على المنتج.",notEnough:"المخزون غير كافٍ. المخزون الحالي: ",transactionFailed:"فشلت العملية: ",added:"تمت إضافة",removed:"تم إخراج"},
+    te:{pageTitle:"EXIT గిడ్డంగి",headerSubtitle:"ఇన్వెంటరీ నిర్వహణ వ్యవస్థ",totalStock:"📦 మొత్తం స్టాక్",stockIn:"🟢 స్టాక్ ఇన్",stockOut:"🔴 స్టాక్ అవుట్",lowStock:"⚠️ తక్కువ స్టాక్",stockMovement:"స్టాక్ కదలిక",product:"ఉత్పత్తి",selectProduct:"ఉత్పత్తిని ఎంచుకోండి",quantity:"పరిమాణం",enterQuantity:"పరిమాణాన్ని నమోదు చేయండి",lowStockAlert:"⚠️ తక్కువ స్టాక్ హెచ్చరిక",loading:"లోడ్ అవుతోంది...",noLowStock:"✅ తక్కువ స్టాక్ ఉన్న ఉత్పత్తులు లేవు",currentStock:"📦 ప్రస్తుత స్టాక్",stockMovementHistory:"📜 స్టాక్ కదలిక చరిత్ర",date:"తేదీ",code:"కోడ్",unit:"యూనిట్",stock:"స్టాక్",minimum:"కనిష్టం",status:"స్థితి",worker:"కార్మికుడు",noProducts:"ఉత్పత్తులు కనుగొనబడలేదు.",noMovements:"ఇంకా కదలికలు లేవు.",low:"తక్కువ",ok:"సరే",in:"🟢 ఇన్",out:"🔴 అవుట్",connecting:"Supabaseకి కనెక్ట్ అవుతోంది...",unableProducts:"ఉత్పత్తులను లోడ్ చేయడం సాధ్యం కాలేదు: ",unableHistory:"స్టాక్ కదలిక చరిత్రను లోడ్ చేయడం సాధ్యం కాలేదు: ",selectProductError:"దయచేసి ఒక ఉత్పత్తిని ఎంచుకోండి.",quantityError:"సున్నా కంటే ఎక్కువ పరిమాణాన్ని నమోదు చేయండి.",productNotFound:"ఉత్పత్తి కనుగొనబడలేదు.",notEnough:"తగినంత స్టాక్ లేదు. ప్రస్తుత స్టాక్: ",transactionFailed:"లావాదేవీ విఫలమైంది: ",added:"జోడించబడింది",removed:"తీసివేయబడింది"}
+  };
+  let currentLanguage=localStorage.getItem("exitWarehouseLanguage")||"en";
+  function t(k){return translations[currentLanguage][k]||translations.en[k]||k}
+  function setLanguage(lang){
+    if(!translations[lang])return;
+    currentLanguage=lang;localStorage.setItem("exitWarehouseLanguage",lang);
+    document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    document.title=t("pageTitle");
+    document.querySelector("header h1").textContent=t("pageTitle");
+    document.querySelector("header p").textContent=t("headerSubtitle");
+    const c=document.querySelectorAll(".card-title");
+    if(c.length>=4){c[0].textContent=t("totalStock");c[1].textContent=t("stockIn");c[2].textContent=t("stockOut");c[3].textContent=t("lowStock")}
+    const s=document.querySelectorAll(".section h2");
+    if(s.length>=4){s[0].textContent=t("stockMovement");s[1].textContent=t("lowStockAlert");s[2].textContent=t("currentStock");s[3].textContent=t("stockMovementHistory")}
+    const labels=document.querySelectorAll("label");
+    if(labels.length>=2){labels[0].textContent=t("product");labels[1].textContent=t("quantity")}
+    const q=document.getElementById("quantity");if(q)q.placeholder=t("enterQuantity");
+    const b1=document.getElementById("stockInBtn"),b2=document.getElementById("stockOutBtn");
+    if(b1)b1.textContent="➕ "+t("stockIn");if(b2)b2.textContent="➖ "+t("stockOut");
+    renderProductSelect();renderProducts();renderLowStock();renderHistory();
+  }
+
   /* =========================================================
      START APPLICATION
      ========================================================= */
@@ -961,7 +1008,7 @@
   async function startApp() {
 
     showStatus(
-      "Connecting to Supabase...",
+      t("connecting"),
       "success"
     );
 
@@ -975,6 +1022,7 @@
 
 
   startApp();
+  setLanguage(currentLanguage);
 
 </script>
 
