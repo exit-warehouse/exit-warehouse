@@ -1,253 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="EXIT Warehouse Inventory Management System">
+<link rel="manifest" href="manifest.json">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<title>EXIT Warehouse</title>
 
-  <meta name="theme-color" content="#111111">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  <meta name="description"
-        content="EXIT Warehouse Inventory">
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f6;
+  color: #111827;
+}
 
-  <link rel="manifest" href="manifest.json">
+header {
+  background: #111111;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+}
 
-  <title>EXIT Warehouse Inventory</title>
+header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+header p {
+  margin: 8px 0 0;
+  font-size: 18px;
+  color: #cccccc;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
 
-    header {
-      background: #111111;
-      color: white;
-      padding: 20px 15px;
-      text-align: center;
-    }
+.status {
+  background: #e8f5e9;
+  color: #176b2c;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-weight: 600;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 25px;
-    }
+.status.error {
+  background: #ffe5e5;
+  color: #a00000;
+}
 
-    header p {
-      margin: 7px 0 0;
-      color: #bbbbbb;
-      font-size: 14px;
-    }
+/* DASHBOARD */
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 15px;
-    }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
-    }
+.stat {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  border-left: 7px solid #2563eb;
+}
 
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+.stat.in {
+  border-left-color: #00a63c;
+}
 
-    .card-title {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 8px;
-    }
+.stat.out {
+  border-left-color: #ef1111;
+}
 
-    .card-number {
-      font-size: 30px;
-      font-weight: bold;
-    }
+.stat.low {
+  border-left-color: #f59e0b;
+}
 
-    .stock {
-      border-left: 5px solid #2563eb;
-    }
+.stat .icon {
+  font-size: 25px;
+}
 
-    .in {
-      border-left: 5px solid #16a34a;
-    }
+.stat .title {
+  font-size: 18px;
+  color: #666;
+  margin-top: 5px;
+}
 
-    .out {
-      border-left: 5px solid #dc2626;
-    }
+.stat .number {
+  font-size: 38px;
+  font-weight: 800;
+  margin-top: 5px;
+}
 
-    .low {
-      border-left: 5px solid #f59e0b;
-    }
+/* CARDS */
 
-    .panel {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
 
-    .panel h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
+.card h2 {
+  margin-top: 0;
+  font-size: 27px;
+}
 
-    label {
-      display: block;
-      margin-top: 12px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
+/* STOCK MOVEMENT */
 
-    input,
-    select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d1d5db;
-      border-radius: 9px;
-      font-size: 16px;
-      background: white;
-    }
+label {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
 
-    .buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 15px;
-    }
+select,
+input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #d0d0d0;
+  border-radius: 12px;
+  font-size: 18px;
+  background: white;
+}
 
-    button {
-      border: 0;
-      border-radius: 9px;
-      padding: 14px;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
 
-    .btn-in {
-      background: #16a34a;
-    }
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 17px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
-    .btn-out {
-      background: #dc2626;
-    }
+.stock-in {
+  background: #00a63c;
+  color: white;
+}
 
-    .refresh {
-      background: #2563eb;
-      width: 100%;
-      margin-top: 10px;
-    }
+.stock-out {
+  background: #ef1111;
+  color: white;
+}
 
-    .status {
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 8px;
-      display: none;
-    }
+button:disabled {
+  opacity: .55;
+}
 
-    .success {
-      display: block;
-      background: #dcfce7;
-      color: #166534;
-    }
+/* LOW STOCK */
 
-    .error {
-      display: block;
-      background: #fee2e2;
-      color: #991b1b;
-    }
+.low-box {
+  border-left: 7px solid #f59e0b;
+}
 
-    .table-wrap {
-      overflow-x: auto;
-    }
+.low-item {
+  padding: 13px;
+  margin-top: 10px;
+  background: #fff8e1;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 17px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 650px;
-    }
+.no-low {
+  text-align: center;
+  color: #555;
+  padding: 18px;
+  font-size: 18px;
+}
 
-    th,
-    td {
-      padding: 11px 9px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
-    }
+/* TABLE */
 
-    th {
-      background: #f9fafb;
-      font-size: 14px;
-    }
+.table-wrap {
+  overflow-x: auto;
+}
 
-    .badge {
-      display: inline-block;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
 
-    .badge-in {
-      background: #dcfce7;
-      color: #166534;
-    }
+th {
+  background: #f5f6f8;
+  text-align: left;
+  padding: 15px;
+  font-size: 17px;
+}
 
-    .badge-out {
-      background: #fee2e2;
-      color: #991b1b;
-    }
+td {
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+  font-size: 16px;
+}
 
-    .low-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+.ok {
+  background: #d9fbe5;
+  color: #087f23;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-block;
+}
 
-    .low-list li {
-      padding: 12px;
-      margin-bottom: 8px;
-      background: #fff7ed;
-      border-left: 4px solid #f59e0b;
-      border-radius: 7px;
-    }
+.low {
+  background: #ffe0e0;
+  color: #b00020;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-block;
+}
 
-    .empty {
-      color: #777;
-      text-align: center;
-      padding: 20px;
-    }
+/* HISTORY */
 
-    .loading {
-      text-align: center;
-      padding: 15px;
-      color: #666;
-    }
+.history-item {
+  border-top: 1px solid #e5e5e5;
+  padding: 15px 0;
+}
 
-    @media (min-width: 700px) {
-      .cards {
-        grid-template-columns: repeat(4, 1fr);
-      }
+.history-item:first-child {
+  border-top: none;
+}
 
-      .buttons {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+.history-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.history-product {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.history-in {
+  color: #087f23;
+  font-weight: 800;
+}
+
+.history-out {
+  color: #b00020;
+  font-weight: 800;
+}
+
+.history-details {
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+  padding: 20px;
+}
+
+/* REFRESH */
+
+.refresh {
+  width: 100%;
+  background: #111;
+  color: white;
+  margin-top: 5px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 14px;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 16px 12px;
+  }
+
+  .stat .number {
+    font-size: 30px;
+  }
+
+  .stat .title {
+    font-size: 15px;
+  }
+
+  .card {
+    padding: 17px;
+  }
+
+  .card h2 {
+    font-size: 23px;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+
+  button {
+    padding: 15px 8px;
+    font-size: 16px;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -259,88 +351,99 @@
 
 <div class="container">
 
+  <div id="status" class="status">
+    Connecting to Supabase...
+  </div>
+
   <!-- DASHBOARD -->
-  <div class="cards">
 
-    <div class="card stock">
-      <div class="card-title">📦 Total Stock</div>
-      <div class="card-number" id="totalStock">0</div>
+  <div class="stats">
+
+    <div class="stat">
+      <div class="icon">📦</div>
+      <div class="title">Total Stock</div>
+      <div class="number" id="totalStock">0</div>
     </div>
 
-    <div class="card in">
-      <div class="card-title">🟢 Stock In</div>
-      <div class="card-number" id="totalIn">0</div>
+    <div class="stat in">
+      <div class="icon">🟢</div>
+      <div class="title">Stock In</div>
+      <div class="number" id="totalIn">0</div>
     </div>
 
-    <div class="card out">
-      <div class="card-title">🔴 Stock Out</div>
-      <div class="card-number" id="totalOut">0</div>
+    <div class="stat out">
+      <div class="icon">🔴</div>
+      <div class="title">Stock Out</div>
+      <div class="number" id="totalOut">0</div>
     </div>
 
-    <div class="card low">
-      <div class="card-title">⚠️ Low Stock</div>
-      <div class="card-number" id="lowStockCount">0</div>
+    <div class="stat low">
+      <div class="icon">⚠️</div>
+      <div class="title">Low Stock</div>
+      <div class="number" id="lowStockCount">0</div>
     </div>
 
   </div>
 
-
   <!-- STOCK MOVEMENT -->
-  <div class="panel">
+
+  <div class="card">
 
     <h2>Stock Movement</h2>
 
-    <label for="product">Product</label>
+    <label for="productSelect">Product</label>
 
-    <select id="product">
-      <option value="">Loading products...</option>
+    <select id="productSelect">
+      <option value="">Select product</option>
     </select>
 
-    <label for="quantity">Quantity</label>
+    <label for="quantityInput">Quantity</label>
 
     <input
-      id="quantity"
+      id="quantityInput"
       type="number"
-      min="1"
-      step="1"
+      min="0.01"
+      step="0.01"
       placeholder="Enter quantity"
     >
 
     <div class="buttons">
 
       <button
-        class="btn-in"
-        onclick="stockIn()">
+        id="stockInButton"
+        class="stock-in"
+        onclick="makeMovement('in')">
         ➕ Stock In
       </button>
 
       <button
-        class="btn-out"
-        onclick="stockOut()">
+        id="stockOutButton"
+        class="stock-out"
+        onclick="makeMovement('out')">
         ➖ Stock Out
       </button>
 
     </div>
 
-    <div id="status" class="status"></div>
-
   </div>
 
-
   <!-- LOW STOCK -->
-  <div class="panel">
+
+  <div class="card low-box">
 
     <h2>⚠️ Low Stock Alert</h2>
 
     <div id="lowStockList">
-      <div class="loading">Loading...</div>
+      <div class="no-low">
+        Loading...
+      </div>
     </div>
 
   </div>
 
+  <!-- CURRENT STOCK -->
 
-  <!-- PRODUCTS -->
-  <div class="panel">
+  <div class="card">
 
     <h2>📦 Current Stock</h2>
 
@@ -368,473 +471,360 @@
 
   </div>
 
-
   <!-- STOCK OUT HISTORY -->
-  <div class="panel">
+
+  <div class="card">
 
     <h2>📜 Stock Out History</h2>
 
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Stock After</th>
-          </tr>
-        </thead>
-
-        <tbody id="historyTable">
-        </tbody>
-
-      </table>
-
+    <div id="history">
+      <div class="empty">
+        Loading history...
+      </div>
     </div>
 
   </div>
 
-
-  <button
-    class="refresh"
-    onclick="loadEverything()">
+  <button class="refresh" onclick="loadAll()">
     🔄 Refresh Data
   </button>
 
 </div>
 
+<footer>
+  © 2026 EXIT Warehouse
+</footer>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-  /* =========================================
-     SUPABASE CONNECTION
-     ========================================= */
+/* =========================================================
+   SUPABASE CONNECTION
+   ========================================================= */
 
-  const SUPABASE_URL =
-    "https://ctucsrwfqlbscbfkmxyh.supabase.co";
+const SUPABASE_URL =
+  "https://ctucsrwfqlbscbfkmxyh.supabase.co";
 
-  const SUPABASE_KEY =
-    "sb_publishable_OE0S0YBMDtb1HZ9NHQCudw_ZE1X74e4";
+/*
+ IMPORTANT:
+ Replace the text below with your existing
+ Supabase Publishable Key.
+*/
 
-  const { createClient } = supabase;
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_OE0S0YBMDtb1HZ9NHQCudw_ZE1X74e4";
 
-  const db = createClient(
+const supabaseClient =
+  window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_PUBLISHABLE_KEY
   );
 
 
-  let products = [];
+/* =========================================================
+   DATA
+   ========================================================= */
+
+let products = [];
+let transactions = [];
 
 
-  /* =========================================
-     STATUS MESSAGE
-     ========================================= */
+/* =========================================================
+   STATUS
+   ========================================================= */
 
-  function showStatus(message, type) {
+function setStatus(message, error = false) {
 
-    const box = document.getElementById("status");
+  const el = document.getElementById("status");
 
-    box.textContent = message;
+  el.textContent = message;
 
-    box.className = "status " + type;
-
-    setTimeout(() => {
-      box.className = "status";
-    }, 5000);
-  }
+  el.className = error
+    ? "status error"
+    : "status";
+}
 
 
-  /* =========================================
-     LOAD EVERYTHING
-     ========================================= */
+/* =========================================================
+   LOAD EVERYTHING
+   ========================================================= */
 
-  async function loadEverything() {
+async function loadAll() {
 
-    await loadProducts();
+  setStatus("Loading inventory...");
 
-    await loadTransactions();
+  await loadProducts();
+  await loadTransactions();
 
-  }
+  updateDashboard();
+  displayProducts();
+  displayLowStock();
+  displayHistory();
+
+  setStatus("Connected to Supabase ✓");
+}
 
 
-  /* =========================================
-     LOAD PRODUCTS
-     ========================================= */
+/* =========================================================
+   LOAD PRODUCTS
+   ========================================================= */
 
-  async function loadProducts() {
+async function loadProducts() {
 
-    const { data, error } = await db
+  const { data, error } =
+    await supabaseClient
       .from("products")
       .select("*")
       .order("id", { ascending: true });
+
+  if (error) {
+
+    console.error(error);
+
+    setStatus(
+      "Could not load products: " + error.message,
+      true
+    );
+
+    return;
+  }
+
+  products = data || [];
+
+  populateProductSelect();
+}
+
+
+/* =========================================================
+   LOAD TRANSACTIONS
+   ========================================================= */
+
+async function loadTransactions() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("stock_transactions")
+      .select("*")
+      .order("created_at", {
+        ascending: false
+      })
+      .limit(200);
+
+  if (error) {
+
+    console.error(error);
+
+    setStatus(
+      "Could not load transactions: " + error.message,
+      true
+    );
+
+    transactions = [];
+
+    return;
+  }
+
+  transactions = data || [];
+}
+
+
+/* =========================================================
+   PRODUCT SELECT
+   ========================================================= */
+
+function populateProductSelect() {
+
+  const select =
+    document.getElementById("productSelect");
+
+  const currentValue = select.value;
+
+  select.innerHTML =
+    '<option value="">Select product</option>';
+
+  products.forEach(product => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = product.id;
+
+    option.textContent =
+      `${product.name} — Stock: ${Number(product.qty || 0)}`;
+
+    select.appendChild(option);
+
+  });
+
+  if (
+    currentValue &&
+    products.some(p => String(p.id) === String(currentValue))
+  ) {
+    select.value = currentValue;
+  }
+}
+
+
+/* =========================================================
+   STOCK MOVEMENT
+   ========================================================= */
+
+async function makeMovement(type) {
+
+  const productId =
+    document.getElementById("productSelect").value;
+
+  const quantity =
+    Number(
+      document.getElementById("quantityInput").value
+    );
+
+  if (!productId) {
+
+    alert("Please select a product.");
+
+    return;
+  }
+
+  if (!Number.isFinite(quantity) || quantity <= 0) {
+
+    alert("Please enter a valid quantity.");
+
+    return;
+  }
+
+  const product =
+    products.find(
+      p => String(p.id) === String(productId)
+    );
+
+  if (!product) {
+
+    alert("Product not found.");
+
+    return;
+  }
+
+  const currentStock =
+    Number(product.qty || 0);
+
+  if (
+    type === "out" &&
+    quantity > currentStock
+  ) {
+
+    alert(
+      `Not enough stock.\n\nCurrent stock: ${currentStock}`
+    );
+
+    return;
+  }
+
+
+  /* Disable buttons */
+
+  const inButton =
+    document.getElementById("stockInButton");
+
+  const outButton =
+    document.getElementById("stockOutButton");
+
+  inButton.disabled = true;
+  outButton.disabled = true;
+
+  setStatus(
+    type === "in"
+      ? "Adding stock..."
+      : "Removing stock..."
+  );
+
+
+  try {
+
+    /*
+      IMPORTANT:
+
+      record_stock_movement() changes products.qty.
+
+      We do NOT update products.qty directly here.
+      This prevents the double-stock problem.
+    */
+
+    const { data, error } =
+      await supabaseClient.rpc(
+        "record_stock_movement",
+        {
+          p_product_id: Number(productId),
+          p_type: type,
+          p_qty: quantity,
+          p_note: "",
+          p_worker: ""
+        }
+      );
+
 
     if (error) {
 
       console.error(error);
 
-      showStatus(
-        "Could not load products: " + error.message,
-        "error"
+      alert(
+        "Stock movement failed:\n\n" +
+        error.message
+      );
+
+      setStatus(
+        "Stock movement failed",
+        true
       );
 
       return;
     }
 
-    products = data || [];
 
-    renderProductSelect();
+    /*
+      The function returns the updated product.
+    */
 
-    renderProducts();
+    const updatedProduct =
+      Array.isArray(data)
+        ? data[0]
+        : data;
 
-    updateDashboard();
 
-    renderLowStock();
-
-  }
-
-
-  /* =========================================
-     PRODUCT SELECT
-     ========================================= */
-
-  function renderProductSelect() {
-
-    const select =
-      document.getElementById("product");
-
-    select.innerHTML =
-      '<option value="">Select product</option>';
-
-    products.forEach(product => {
-
-      const option =
-        document.createElement("option");
-
-      option.value = product.id;
-
-      option.textContent =
-        product.name +
-        " — Stock: " +
-        Number(product.qty || 0);
-
-      select.appendChild(option);
-
-    });
-
-  }
-
-
-  /* =========================================
-     PRODUCTS TABLE
-     ========================================= */
-
-  function renderProducts() {
-
-    const table =
-      document.getElementById("productsTable");
-
-    table.innerHTML = "";
-
-    if (products.length === 0) {
-
-      table.innerHTML =
-        '<tr><td colspan="6" class="empty">No products found</td></tr>';
-
-      return;
-    }
-
-    products.forEach(product => {
-
-      const qty =
-        Number(product.qty || 0);
-
-      const min =
-        Number(product.min || 0);
-
-      let status = "";
-
-      if (qty <= min) {
-
-        status =
-          '<span class="badge badge-out">LOW STOCK</span>';
-
-      } else {
-
-        status =
-          '<span class="badge badge-in">OK</span>';
-
-      }
-
-      const row =
-        document.createElement("tr");
-
-      row.innerHTML = `
-
-        <td>${escapeHtml(product.name || "")}</td>
-
-        <td>${escapeHtml(product.code || "")}</td>
-
-        <td>${escapeHtml(product.unit || "")}</td>
-
-        <td><strong>${qty}</strong></td>
-
-        <td>${min}</td>
-
-        <td>${status}</td>
-
-      `;
-
-      table.appendChild(row);
-
-    });
-
-  }
-
-
-  /* =========================================
-     DASHBOARD
-     ========================================= */
-
-  function updateDashboard() {
-
-    let total = 0;
-
-    let low = 0;
-
-    products.forEach(product => {
-
-      const qty =
-        Number(product.qty || 0);
-
-      const min =
-        Number(product.min || 0);
-
-      total += qty;
-
-      if (qty <= min) {
-        low++;
-      }
-
-    });
-
-    document.getElementById("totalStock")
-      .textContent = total;
-
-    document.getElementById("lowStockCount")
-      .textContent = low;
-
-  }
-
-
-  /* =========================================
-     LOW STOCK
-     ========================================= */
-
-  function renderLowStock() {
-
-    const box =
-      document.getElementById("lowStockList");
-
-    const lowProducts =
-      products.filter(product =>
-        Number(product.qty || 0) <=
-        Number(product.min || 0)
-      );
-
-    if (lowProducts.length === 0) {
-
-      box.innerHTML =
-        '<div class="empty">✅ No low-stock products</div>';
-
-      return;
-    }
-
-    const list =
-      document.createElement("ul");
-
-    list.className = "low-list";
-
-    lowProducts.forEach(product => {
-
-      const li =
-        document.createElement("li");
-
-      li.innerHTML =
-        "<strong>" +
-        escapeHtml(product.name || "") +
-        "</strong><br>" +
-        "Current stock: " +
-        Number(product.qty || 0) +
-        " | Minimum: " +
-        Number(product.min || 0);
-
-      list.appendChild(li);
-
-    });
-
-    box.innerHTML = "";
-
-    box.appendChild(list);
-
-  }
-
-
-  /* =========================================
-     STOCK IN
-     ========================================= */
-
-  async function stockIn() {
-
-    await changeStock("IN");
-
-  }
-
-
-  /* =========================================
-     STOCK OUT
-     ========================================= */
-
-  async function stockOut() {
-
-    await changeStock("OUT");
-
-  }
-
-
-  /* =========================================
-     CHANGE STOCK
-     ========================================= */
-
-  async function changeStock(type) {
-
-    const productId =
-      document.getElementById("product").value;
-
-    const quantity =
+    const newStock =
       Number(
-        document.getElementById("quantity").value
+        updatedProduct?.qty ??
+        (
+          type === "in"
+            ? currentStock + quantity
+            : currentStock - quantity
+        )
       );
 
-    if (!productId) {
 
-      showStatus(
-        "Please select a product.",
-        "error"
-      );
+    /*
+      Save transaction history.
 
-      return;
-    }
+      The database trigger now ONLY records stock_after.
+      It does not change the stock again.
+    */
 
-    if (!quantity || quantity <= 0) {
+    const transactionType =
+      type === "in"
+        ? "IN"
+        : "OUT";
 
-      showStatus(
-        "Please enter a valid quantity.",
-        "error"
-      );
-
-      return;
-    }
-
-    const product =
-      products.find(
-        p => String(p.id) === String(productId)
-      );
-
-    if (!product) {
-
-      showStatus(
-        "Product not found.",
-        "error"
-      );
-
-      return;
-    }
-
-    const currentStock =
-      Number(product.qty || 0);
-
-    let newStock;
-
-
-    /* STOCK OUT */
-
-    if (type === "OUT") {
-
-      if (quantity > currentStock) {
-
-        showStatus(
-          "Not enough stock. Current stock: " +
-          currentStock,
-          "error"
-        );
-
-        return;
-      }
-
-      newStock =
-        currentStock - quantity;
-
-    }
-
-
-    /* STOCK IN */
-
-    else {
-
-      newStock =
-        currentStock + quantity;
-
-    }
-
-
-    /* UPDATE PRODUCT */
-
-    const { error: updateError } =
-      await db
-        .from("products")
-        .update({
-          qty: newStock
-        })
-        .eq("id", product.id);
-
-
-    if (updateError) {
-
-      console.error(updateError);
-
-      showStatus(
-        "Could not update stock: " +
-        updateError.message,
-        "error"
-      );
-
-      return;
-    }
-
-
-    /* SAVE TRANSACTION */
 
     const { error: transactionError } =
-      await db
+      await supabaseClient
         .from("stock_transactions")
         .insert({
-
-          product_id: product.id,
-
+          product_id: Number(productId),
           product_name: product.name,
-
-          transaction_type: type,
-
-          quantity: quantity,
-
-          stock_after: newStock
-
+          transaction_type: transactionType,
+          quantity: Math.round(quantity),
+          stock_after: Math.round(newStock)
         });
 
 
@@ -842,130 +832,325 @@
 
       console.error(transactionError);
 
-      showStatus(
-        "Stock changed, but transaction history could not be saved: " +
-        transactionError.message,
-        "error"
+      alert(
+        "Stock changed successfully, but transaction history could not be saved:\n\n" +
+        transactionError.message
       );
 
     } else {
 
-      showStatus(
-        type === "IN"
-          ? "Stock added successfully."
-          : "Stock removed successfully.",
-        "success"
+      alert(
+        type === "in"
+          ? `Stock In successful!\n\n${product.name}\n+${quantity}\nNew stock: ${newStock}`
+          : `Stock Out successful!\n\n${product.name}\n-${quantity}\nNew stock: ${newStock}`
       );
 
     }
 
 
-    document.getElementById("quantity").value = "";
+    /*
+      Clear quantity.
+    */
 
-    await loadEverything();
+    document.getElementById(
+      "quantityInput"
+    ).value = "";
+
+
+    /*
+      Reload everything from Supabase.
+    */
+
+    await loadAll();
 
   }
 
+  catch (error) {
 
-  /* =========================================
-     LOAD TRANSACTIONS
-     ========================================= */
+    console.error(error);
 
-  async function loadTransactions() {
+    alert(
+      "Unexpected error:\n\n" +
+      error.message
+    );
 
-    const { data, error } =
-      await db
-        .from("stock_transactions")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
+    setStatus(
+      "Unexpected error",
+      true
+    );
 
-    if (error) {
+  }
 
-      console.error(error);
+  finally {
 
-      return;
-    }
+    inButton.disabled = false;
+    outButton.disabled = false;
 
-    const transactions =
-      data || [];
-
-
-    let totalIn = 0;
-
-    let totalOut = 0;
+  }
+}
 
 
-    transactions.forEach(transaction => {
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+function updateDashboard() {
+
+  /*
+    Total current stock across all products.
+  */
+
+  const totalStock =
+    products.reduce(
+      (sum, product) =>
+        sum + Number(product.qty || 0),
+      0
+    );
+
+
+  /*
+    Total IN transactions.
+  */
+
+  const totalIn =
+    transactions
+      .filter(
+        t =>
+          String(t.transaction_type)
+            .toUpperCase() === "IN"
+      )
+      .reduce(
+        (sum, t) =>
+          sum + Number(t.quantity || 0),
+        0
+      );
+
+
+  /*
+    Total OUT transactions.
+  */
+
+  const totalOut =
+    transactions
+      .filter(
+        t =>
+          String(t.transaction_type)
+            .toUpperCase() === "OUT"
+      )
+      .reduce(
+        (sum, t) =>
+          sum + Number(t.quantity || 0),
+        0
+      );
+
+
+  /*
+    Low stock means stock <= minimum.
+  */
+
+  const lowStock =
+    products.filter(
+      product =>
+        Number(product.qty || 0) <=
+        Number(product.min || 0)
+    );
+
+
+  document.getElementById(
+    "totalStock"
+  ).textContent =
+    formatNumber(totalStock);
+
+
+  document.getElementById(
+    "totalIn"
+  ).textContent =
+    formatNumber(totalIn);
+
+
+  document.getElementById(
+    "totalOut"
+  ).textContent =
+    formatNumber(totalOut);
+
+
+  document.getElementById(
+    "lowStockCount"
+  ).textContent =
+    lowStock.length;
+}
+
+
+/* =========================================================
+   CURRENT STOCK TABLE
+   ========================================================= */
+
+function displayProducts() {
+
+  const table =
+    document.getElementById("productsTable");
+
+  if (!products.length) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="6" class="empty">
+          No products found.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  table.innerHTML =
+    products.map(product => {
 
       const qty =
-        Number(transaction.quantity || 0);
+        Number(product.qty || 0);
 
-      if (
-        String(transaction.transaction_type)
-          .toUpperCase() === "IN"
-      ) {
+      const minimum =
+        Number(product.min || 0);
 
-        totalIn += qty;
-
-      } else if (
-        String(transaction.transaction_type)
-          .toUpperCase() === "OUT"
-      ) {
-
-        totalOut += qty;
-
-      }
-
-    });
+      const isLow =
+        qty <= minimum;
 
 
-    document.getElementById("totalIn")
-      .textContent = totalIn;
+      return `
+        <tr>
 
-    document.getElementById("totalOut")
-      .textContent = totalOut;
+          <td>
+            <strong>
+              ${escapeHtml(product.name || "")}
+            </strong>
+          </td>
+
+          <td>
+            ${escapeHtml(product.code || "-")}
+          </td>
+
+          <td>
+            ${escapeHtml(product.unit || "")}
+          </td>
+
+          <td>
+            <strong>
+              ${formatNumber(qty)}
+            </strong>
+          </td>
+
+          <td>
+            ${formatNumber(minimum)}
+          </td>
+
+          <td>
+            ${
+              isLow
+                ? '<span class="low">LOW</span>'
+                : '<span class="ok">OK</span>'
+            }
+          </td>
+
+        </tr>
+      `;
+
+    }).join("");
+}
 
 
-    renderHistory(transactions);
+/* =========================================================
+   LOW STOCK ALERT
+   ========================================================= */
 
+function displayLowStock() {
+
+  const container =
+    document.getElementById("lowStockList");
+
+
+  const lowProducts =
+    products.filter(
+      product =>
+        Number(product.qty || 0) <=
+        Number(product.min || 0)
+    );
+
+
+  if (!lowProducts.length) {
+
+    container.innerHTML = `
+      <div class="no-low">
+        ✅ No low-stock products
+      </div>
+    `;
+
+    return;
   }
 
 
-  /* =========================================
-     STOCK OUT HISTORY
-     ========================================= */
+  container.innerHTML =
+    lowProducts.map(product => {
 
-  function renderHistory(transactions) {
+      const qty =
+        Number(product.qty || 0);
 
-    const table =
-      document.getElementById("historyTable");
-
-    table.innerHTML = "";
+      const minimum =
+        Number(product.min || 0);
 
 
-    const stockOut =
-      transactions.filter(transaction =>
-        String(transaction.transaction_type)
+      return `
+        <div class="low-item">
+
+          <strong>
+            ⚠️ ${escapeHtml(product.name)}
+          </strong>
+
+          <span>
+            Stock: ${formatNumber(qty)}
+            /
+            Minimum: ${formatNumber(minimum)}
+          </span>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   STOCK OUT HISTORY
+   ========================================================= */
+
+function displayHistory() {
+
+  const container =
+    document.getElementById("history");
+
+
+  const stockOut =
+    transactions.filter(
+      t =>
+        String(t.transaction_type)
           .toUpperCase() === "OUT"
-      );
+    );
 
 
-    if (stockOut.length === 0) {
+  if (!stockOut.length) {
 
-      table.innerHTML =
-        '<tr><td colspan="4" class="empty">No stock out history</td></tr>';
+    container.innerHTML = `
+      <div class="empty">
+        No stock-out history yet.
+      </div>
+    `;
 
-      return;
-    }
+    return;
+  }
 
 
-    stockOut.forEach(transaction => {
-
-      const row =
-        document.createElement("tr");
-
+  container.innerHTML =
+    stockOut.map(transaction => {
 
       const date =
         transaction.created_at
@@ -975,79 +1160,75 @@
           : "";
 
 
-      row.innerHTML = `
+      return `
+        <div class="history-item">
 
-        <td>${escapeHtml(date)}</td>
+          <div class="history-top">
 
-        <td>${escapeHtml(
-          transaction.product_name || ""
-        )}</td>
+            <div class="history-product">
+              ${escapeHtml(
+                transaction.product_name || "Unknown"
+              )}
+            </div>
 
-        <td>
-          <span class="badge badge-out">
-            -${Number(transaction.quantity || 0)}
-          </span>
-        </td>
+            <div class="history-out">
+              -${formatNumber(
+                transaction.quantity
+              )}
+            </div>
 
-        <td>
-          ${Number(transaction.stock_after || 0)}
-        </td>
+          </div>
 
+          <div class="history-details">
+
+            Stock after:
+            <strong>
+              ${formatNumber(
+                transaction.stock_after
+              )}
+            </strong>
+
+            <br>
+
+            ${escapeHtml(date)}
+
+          </div>
+
+        </div>
       `;
 
-
-      table.appendChild(row);
-
-    });
-
-  }
+    }).join("");
+}
 
 
-  /* =========================================
-     SECURITY / HTML ESCAPE
-     ========================================= */
+/* =========================================================
+   NUMBER FORMAT
+   ========================================================= */
 
-  function escapeHtml(value) {
+function formatNumber(value) {
 
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+  const number =
+    Number(value || 0);
 
-  }
-
-
-  /* =========================================
-     START APP
-     ========================================= */
-
-  loadEverything();
+  return Number.isInteger(number)
+    ? number.toLocaleString()
+    : number.toLocaleString(
+        undefined,
+        {
+          maximumFractionDigits: 2
+        }
+      );
+}
 
 
-  /* =========================================
-     SERVICE WORKER
-     ========================================= */
+/* =========================================================
+   SECURITY
+   ========================================================= */
 
-  if ("serviceWorker" in navigator) {
+function escapeHtml(text) {
 
-    window.addEventListener("load", () => {
+  const div =
+    document.createElement("div");
 
-      navigator.serviceWorker
-        .register("sw.js")
-        .catch(error => {
-          console.log(
-            "Service worker error:",
-            error
-          );
-        });
-
-    });
-
-  }
-
-</script>
-
-</body>
-      </html>
+  div.textContent =
+  
