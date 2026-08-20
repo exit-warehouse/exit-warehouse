@@ -1837,12 +1837,151 @@ showStatus(
 type==="in"
 ?
 formatNumber(quantity)+" "+t("added")+" "+product.name
+async function makeMovement(type){
+
+const productId =
+document.getElementById("productSelect").value;
+
+const quantity = Number(
+document.getElementById("quantity").value
+);
+
+const worker =
+document.getElementById("worker").value.trim();
+
+
+if(!productId){
+
+showStatus(t("selectProductError"),"error");
+return;
+
+}
+
+
+if(!Number.isFinite(quantity) || quantity<=0){
+
+showStatus(t("quantityError"),"error");
+return;
+
+}
+
+
+const product = products.find(p =>
+String(p.id) === String(productId)
+);
+
+
+if(!product){
+
+showStatus(t("selectProductError"),"error");
+return;
+
+}
+
+
+const oldStock = Number(product.stock || 0);
+
+
+let newStock;
+
+
+if(type==="out"){
+
+if(quantity > oldStock){
+
+showStatus(
+t("notEnough")+formatNumber(oldStock),
+"error"
+);
+
+return;
+
+}
+
+newStock = oldStock - quantity;
+
+}else{
+
+newStock = oldStock + quantity;
+
+}
+
+
+const button =
+type==="in"
+?
+document.getElementById("stockInBtn")
 :
-formatNumber(quantity)+" "+t("removed")+" "+product.name,
+document.getElementById("stockOutBtn");
+
+
+button.disabled=true;
+
+
+try{
+
+
+// UPDATE PRODUCT STOCK
+
+const updateStock =
+await supabaseClient
+.from("products")
+.update({
+stock:newStock
+})
+.eq("id",productId);
+
+
+if(updateStock.error){
+
+throw updateStock.error;
+
+}
+
+
+
+// SAVE HISTORY
+
+const movement =
+await supabaseClient
+.from("stock_transactions")
+.insert([{
+
+product_id:productId,
+product_name:product.name,
+transaction_type:type,
+quantity:quantity,
+worker:worker || null
+
+}]);
+
+
+if(movement.error){
+
+throw movement.error;
+
+}
+
+
+
+await loadProducts();
+await loadHistory();
+
+
+document.getElementById("quantity").value="";
+document.getElementById("worker").value="";
+
+
+showStatus(
+
+formatNumber(quantity)+" "+
+(type==="in" ? t("added") : t("removed"))+
+" "+product.name,
 
 "success"
 
 );
+
 
 }catch(error){
 
@@ -1854,6 +1993,7 @@ t("transactionFailed")+
 "error"
 );
 
+
 }finally{
 
 button.disabled=false;
@@ -1861,7 +2001,6 @@ button.disabled=false;
 }
 
 }
-
 
 /* =====================================================
    HISTORY
