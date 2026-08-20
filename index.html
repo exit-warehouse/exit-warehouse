@@ -7,7 +7,7 @@
 <meta name="description" content="EXIT Warehouse Inventory Management">
 <title>EXIT Warehouse</title>
 
-<link rel="manifest" href="./manifest.json">
+<link rel="manifest" href="./manifest.webmanifest">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1600,7 +1600,7 @@ const result=await supabaseClient
 .insert([{
 
 name:name,
-code:barcode || name,
+code:barcode || ("AUTO-" + Date.now()),
 barcode:barcode || null,
 unit:unit || null,
 stock:startingStock,
