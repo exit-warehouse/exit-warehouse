@@ -13,92 +13,94 @@
 
 <style>
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
 
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#f1f3f6;
-  color:#111827
+  color:#111827;
 }
 
 header{
   background:#111;
-  color:#fff;
+  color:white;
   text-align:center;
-  padding:30px 15px 25px
+  padding:28px 15px 24px;
 }
 
 header h1{
   margin:0;
-  font-size:38px
+  font-size:36px;
 }
 
 header p{
-  margin:10px 0 0;
-  font-size:19px;
-  color:#ccc
+  margin:8px 0 0;
+  font-size:18px;
+  color:#ccc;
 }
 
 .language-switcher{
   display:flex;
   justify-content:center;
   gap:8px;
-  margin-top:20px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
+  margin-top:18px;
 }
 
 .language-switcher button{
-  background:#fff;
+  background:white;
   color:#111;
-  border:1px solid #ddd;
-  padding:10px 15px;
+  border:0;
+  padding:10px 14px;
   border-radius:12px;
-  font-size:15px;
-  font-weight:bold
-}
-
-.status{
-  max-width:1100px;
-  margin:15px auto;
-  padding:14px;
-  border-radius:12px;
-  text-align:center;
-  font-size:16px;
-  display:none
-}
-
-.status.success{
-  display:block;
-  background:#dcfce7;
-  color:#166534
-}
-
-.status.error{
-  display:block;
-  background:#fee2e2;
-  color:#991b1b
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .container{
   max-width:1100px;
   margin:auto;
-  padding:20px 15px 40px
+  padding:18px 14px 40px;
+}
+
+.status{
+  max-width:1100px;
+  margin:15px auto;
+  padding:13px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:bold;
+  display:none;
+}
+
+.status.success{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status.error{
+  display:block;
+  background:#fee2e2;
+  color:#991b1b;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
-  margin-bottom:22px
+  gap:15px;
+  margin-bottom:20px;
 }
 
 .card{
-  background:#fff;
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 5px 18px rgba(0,0,0,.08);
-  border-left:8px solid
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  border-left:7px solid;
 }
 
 .card.total{border-color:#1976ed}
@@ -107,273 +109,236 @@ header p{
 .card.low{border-color:#ffae00}
 
 .card-title{
-  font-size:20px;
   color:#666;
-  margin-bottom:10px
+  font-size:18px;
+  margin-bottom:8px;
 }
 
 .card-number{
-  font-size:44px;
-  font-weight:bold
+  font-size:40px;
+  font-weight:bold;
 }
 
 .section{
-  background:#fff;
-  border-radius:20px;
-  padding:25px;
-  margin-bottom:22px;
-  box-shadow:0 5px 18px rgba(0,0,0,.08)
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .section h2{
   margin-top:0;
-  font-size:28px
+  font-size:25px;
 }
 
 label{
   display:block;
-  font-size:19px;
+  margin:14px 0 7px;
+  font-size:17px;
   font-weight:bold;
-  margin:15px 0 8px
 }
 
 input,select{
   width:100%;
-  padding:15px;
+  padding:14px;
   border:1px solid #d1d5db;
-  border-radius:13px;
-  font-size:17px;
-  background:#fff;
-  outline:none
+  border-radius:12px;
+  font-size:16px;
+  background:white;
+  outline:none;
 }
 
 input:focus,select:focus{
   border-color:#087ff5;
-  box-shadow:0 0 0 3px rgba(8,127,245,.12)
+  box-shadow:0 0 0 3px rgba(8,127,245,.12);
 }
 
 .buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:20px
+  gap:10px;
+  margin-top:18px;
 }
 
 button{
-  border:none;
-  border-radius:13px;
-  padding:16px;
-  color:#fff;
-  font-size:17px;
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  color:white;
+  font-size:16px;
   font-weight:bold;
-  cursor:pointer
+  cursor:pointer;
 }
 
 button:disabled{
-  opacity:.55
+  opacity:.5;
 }
 
 .stock-in{background:#00a63c}
 .stock-out{background:#ef1724}
 .add-btn{background:#087ff5}
-.clear-btn{background:#5b5b5b}
+.clear-btn{background:#555}
 
 .delete-btn{
   background:#dc2626;
-  padding:8px 11px;
-  font-size:13px
+  padding:8px 10px;
+  font-size:13px;
 }
 
 .alert{
-  padding:15px;
-  border-radius:13px;
-  margin-bottom:10px;
   background:#fff7ed;
-  color:#9a3412
+  color:#9a3412;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:9px;
 }
 
 .no-low,.empty{
   text-align:center;
   color:#777;
-  padding:20px
+  padding:18px;
 }
 
 .table-wrap{
   width:100%;
-  overflow-x:auto
+  overflow-x:auto;
 }
 
 table{
   width:100%;
-  border-collapse:collapse
+  border-collapse:collapse;
 }
 
 th,td{
-  padding:13px 9px;
+  padding:12px 8px;
   border-bottom:1px solid #e5e7eb;
   text-align:left;
-  font-size:15px;
-  vertical-align:middle
+  vertical-align:middle;
 }
 
 th{
   background:#f8fafc;
-  font-weight:bold;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .ok{
   display:inline-block;
   background:#dcfce7;
   color:#15803d;
-  padding:6px 12px;
+  padding:5px 10px;
   border-radius:20px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .low-badge{
   display:inline-block;
   background:#fee2e2;
   color:#b91c1c;
-  padding:6px 12px;
+  padding:5px 10px;
   border-radius:20px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .in-badge{
   color:#15803d;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .out-badge{
   color:#dc2626;
-  font-weight:bold
+  font-weight:bold;
 }
 
 footer{
   text-align:center;
   padding:25px;
-  color:#777
+  color:#777;
 }
 
 html[dir="rtl"] body{
-  direction:rtl
+  direction:rtl;
 }
 
 html[dir="rtl"] .card{
-  border-left:none;
-  border-right:8px solid
+  border-left:0;
+  border-right:7px solid;
 }
 
-html[dir="rtl"] .card.total{
-  border-right-color:#1976ed
-}
-
-html[dir="rtl"] .card.in{
-  border-right-color:#00a63c
-}
-
-html[dir="rtl"] .card.out{
-  border-right-color:#ef1724
-}
-
-html[dir="rtl"] .card.low{
-  border-right-color:#ffae00
-}
+html[dir="rtl"] .card.total{border-right-color:#1976ed}
+html[dir="rtl"] .card.in{border-right-color:#00a63c}
+html[dir="rtl"] .card.out{border-right-color:#ef1724}
+html[dir="rtl"] .card.low{border-right-color:#ffae00}
 
 html[dir="rtl"] th,
 html[dir="rtl"] td{
-  text-align:right
+  text-align:right;
 }
 
 @media(max-width:700px){
 
-  header{
-    padding:27px 10px 22px
-  }
-
   header h1{
-    font-size:30px
+    font-size:30px;
   }
 
   header p{
-    font-size:17px
-  }
-
-  .language-switcher button{
-    padding:9px 11px;
-    font-size:13px
-  }
-
-  .container{
-    padding:14px 10px 35px
+    font-size:16px;
   }
 
   .cards{
-    gap:10px
+    gap:10px;
   }
 
   .card{
-    padding:16px 11px;
-    border-left-width:6px;
-    border-radius:16px
+    padding:15px 11px;
+    border-left-width:5px;
+    border-radius:15px;
   }
 
   html[dir="rtl"] .card{
-    border-right-width:6px
+    border-right-width:5px;
   }
 
   .card-title{
-    font-size:15px
+    font-size:14px;
   }
 
   .card-number{
-    font-size:34px
+    font-size:32px;
   }
 
   .section{
-    padding:18px 13px;
-    border-radius:17px;
-    margin-bottom:16px
+    padding:17px 13px;
+    border-radius:16px;
   }
 
   .section h2{
-    font-size:23px
+    font-size:22px;
   }
 
-  label{
-    font-size:18px
-  }
-
-  input,select{
-    padding:13px;
-    font-size:16px
+  .buttons{
+    gap:8px;
   }
 
   button{
-    font-size:15px;
-    padding:15px 6px
-  }
-
-  .table-wrap{
-    overflow:visible
+    font-size:14px;
   }
 
   table,thead,tbody,tr,th,td{
     display:block;
-    width:100%
+    width:100%;
   }
 
   thead{
-    display:none
+    display:none;
   }
 
   tbody tr{
     background:#f8fafc;
     border:1px solid #e5e7eb;
-    border-radius:13px;
+    border-radius:12px;
     margin-bottom:12px;
-    padding:7px 11px
+    padding:7px 10px;
   }
 
   tbody td{
@@ -382,13 +347,12 @@ html[dir="rtl"] td{
     align-items:center;
     gap:10px;
     padding:9px 2px;
-    border-bottom:1px solid #e5e7eb;
     text-align:right;
-    min-height:40px
+    border-bottom:1px solid #e5e7eb;
   }
 
   tbody td:last-child{
-    border-bottom:none
+    border-bottom:0;
   }
 
   tbody td::before{
@@ -396,24 +360,24 @@ html[dir="rtl"] td{
     font-weight:bold;
     color:#555;
     text-align:left;
-    flex-shrink:0
+    flex-shrink:0;
   }
 
   html[dir="rtl"] tbody td{
-    text-align:left
+    text-align:left;
   }
 
   html[dir="rtl"] tbody td::before{
-    text-align:right
+    text-align:right;
   }
 
   tbody td[colspan]{
     display:block;
-    text-align:center
+    text-align:center;
   }
 
   tbody td[colspan]::before{
-    display:none
+    display:none;
   }
 }
 </style>
@@ -423,27 +387,27 @@ html[dir="rtl"] td{
 
 <header>
 
-  <h1 id="appTitle">EXIT Warehouse</h1>
+<h1 id="appTitle">EXIT Warehouse</h1>
 
-  <p id="appSubtitle">
-    Inventory Management System
-  </p>
+<p id="appSubtitle">
+Inventory Management System
+</p>
 
-  <div class="language-switcher">
+<div class="language-switcher">
 
-    <button type="button" onclick="setLanguage('en')">
-      🇬🇧 English
-    </button>
+<button type="button" onclick="setLanguage('en')">
+🇬🇧 English
+</button>
 
-    <button type="button" onclick="setLanguage('ar')">
-      🇸🇦 العربية
-    </button>
+<button type="button" onclick="setLanguage('ar')">
+🇸🇦 العربية
+</button>
 
-    <button type="button" onclick="setLanguage('te')">
-      🇮🇳 తెలుగు
-    </button>
+<button type="button" onclick="setLanguage('te')">
+🇮🇳 తెలుగు
+</button>
 
-  </div>
+</div>
 
 </header>
 
@@ -451,457 +415,372 @@ html[dir="rtl"] td{
 
 <div class="container">
 
-  <!-- DASHBOARD -->
+<!-- DASHBOARD -->
 
-  <div class="cards">
+<div class="cards">
 
-    <div class="card total">
+<div class="card total">
 
-      <div class="card-title" id="totalProductsLabel">
-        📦 Total Products
-      </div>
+<div class="card-title" id="totalProductsLabel">
+📦 Total Products
+</div>
 
-      <div class="card-number" id="totalProducts">
-        0
-      </div>
-
-    </div>
-
-
-    <div class="card in">
-
-      <div class="card-title" id="stockInLabel">
-        🟢 Stock In
-      </div>
-
-      <div class="card-number" id="stockIn">
-        0
-      </div>
-
-    </div>
-
-
-    <div class="card out">
-
-      <div class="card-title" id="stockOutLabel">
-        🔴 Stock Out
-      </div>
-
-      <div class="card-number" id="stockOut">
-        0
-      </div>
-
-    </div>
-
-
-    <div class="card low">
-
-      <div class="card-title" id="lowStockLabel">
-        ⚠️ Low Stock
-      </div>
-
-      <div class="card-number" id="lowStock">
-        0
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- STOCK MOVEMENT -->
-
-  <div class="section">
-
-    <h2 id="stockMovementTitle">
-      Stock Movement
-    </h2>
-
-    <label id="productLabel">
-      Product
-    </label>
-
-    <select id="productSelect">
-      <option value="">
-        Select product
-      </option>
-    </select>
-
-
-    <label id="quantityLabel">
-      Quantity
-    </label>
-
-    <input
-      id="quantity"
-      type="number"
-      min="0.01"
-      step="any"
-      placeholder="Enter quantity"
-    >
-
-
-    <label id="workerLabel">
-      Worker
-    </label>
-
-    <input
-      id="worker"
-      type="text"
-      placeholder="Enter worker name"
-    >
-
-
-    <div class="buttons">
-
-      <button
-        id="stockInBtn"
-        class="stock-in"
-        onclick="makeMovement('in')"
-      >
-        ➕ Stock In
-      </button>
-
-      <button
-        id="stockOutBtn"
-        class="stock-out"
-        onclick="makeMovement('out')"
-      >
-        ➖ Stock Out
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- ADD PRODUCT -->
-
-  <div class="section">
-
-    <h2 id="addProductTitle">
-      ➕ Add Product
-    </h2>
-
-    <label id="productNameLabel">
-      Product Name
-    </label>
-
-    <input
-      id="productName"
-      type="text"
-      placeholder="Enter product name"
-    >
-
-
-    <label id="barcodeLabel">
-      Barcode / Code
-    </label>
-
-    <input
-      id="barcode"
-      type="text"
-      placeholder="Enter barcode"
-    >
-
-
-    <label id="unitLabel">
-      Unit
-    </label>
-
-    <input
-      id="unit"
-      type="text"
-      placeholder="Example: pcs, box, kg"
-    >
-
-
-    <label id="startingStockLabel">
-      Starting Stock
-    </label>
-
-    <input
-      id="startingStock"
-      type="number"
-      min="0"
-      step="any"
-      value="0"
-    >
-
-
-    <label id="minimumStockLabel">
-      Minimum Stock
-    </label>
-
-    <input
-      id="minimumStock"
-      type="number"
-      min="0"
-      step="any"
-      value="0"
-    >
-
-
-    <div class="buttons">
-
-      <button
-        id="addProductBtn"
-        class="add-btn"
-        onclick="addProduct()"
-      >
-        ➕ Add Product
-      </button>
-
-      <button
-        id="clearBtn"
-        class="clear-btn"
-        onclick="clearProductForm()"
-      >
-        🔄 Clear
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- LOW STOCK -->
-
-  <div class="section">
-
-    <h2 id="lowStockAlertTitle">
-      ⚠️ Low Stock Alert
-    </h2>
-
-    <div id="lowStockList">
-      <div class="no-low">
-        Loading...
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- PRODUCTS -->
-
-  <div class="section">
-
-    <h2 id="productsTitle">
-      📦 Products
-    </h2>
-
-    <input
-      id="searchProduct"
-      type="text"
-      placeholder="🔍 Search product or barcode..."
-      oninput="renderProducts()"
-    >
-
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th id="thProduct">
-              Product
-            </th>
-
-            <th id="thBarcode">
-              Barcode
-            </th>
-
-            <th id="thUnit">
-              Unit
-            </th>
-
-            <th id="thStock">
-              Stock
-            </th>
-
-            <th id="thMinimum">
-              Minimum
-            </th>
-
-            <th id="thStatus">
-              Status
-            </th>
-
-            <th id="thAction">
-              Action
-            </th>
-
-          </tr>
-
-        </thead>
-
-        <tbody id="productsTable">
-
-          <tr>
-            <td colspan="7">
-              Loading...
-            </td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-
-  <!-- HISTORY -->
-
-  <div class="section">
-
-    <h2 id="historyTitle">
-      📜 Stock Movement History
-    </h2>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th id="thDate">
-              Date
-            </th>
-
-            <th id="thHistoryProduct">
-              Product
-            </th>
-
-            <th id="thType">
-              Type
-            </th>
-
-            <th id="thQuantity">
-              Quantity
-            </th>
-
-            <th id="thWorker">
-              Worker
-            </th>
-
-          </tr>
-
-        </thead>
-
-        <tbody id="historyTable">
-
-          <tr>
-            <td colspan="5">
-              Loading...
-            </td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
+<div class="card-number" id="totalProducts">
+0
+</div>
 
 </div>
 
+<div class="card in">
+
+<div class="card-title" id="stockInLabel">
+🟢 Stock In
+</div>
+
+<div class="card-number" id="stockIn">
+0
+</div>
+
+</div>
+
+<div class="card out">
+
+<div class="card-title" id="stockOutLabel">
+🔴 Stock Out
+</div>
+
+<div class="card-number" id="stockOut">
+0
+</div>
+
+</div>
+
+<div class="card low">
+
+<div class="card-title" id="lowStockLabel">
+⚠️ Low Stock
+</div>
+
+<div class="card-number" id="lowStock">
+0
+</div>
+
+</div>
+
+</div>
+
+<!-- STOCK MOVEMENT -->
+
+<div class="section">
+
+<h2 id="stockMovementTitle">
+Stock Movement
+</h2>
+
+<label id="productLabel">
+Product
+</label>
+
+<select id="productSelect">
+<option value="">Select product</option>
+</select>
+
+<label id="quantityLabel">
+Quantity
+</label>
+
+<input
+id="quantity"
+type="number"
+min="0.01"
+step="any"
+placeholder="Enter quantity">
+
+<label id="workerLabel">
+Worker
+</label>
+
+<input
+id="worker"
+type="text"
+placeholder="Enter worker name">
+
+<div class="buttons">
+
+<button
+id="stockInBtn"
+class="stock-in"
+onclick="makeMovement('in')">
+➕ Stock In
+</button>
+
+<button
+id="stockOutBtn"
+class="stock-out"
+onclick="makeMovement('out')">
+➖ Stock Out
+</button>
+
+</div>
+
+</div>
+
+<!-- ADD PRODUCT -->
+
+<div class="section">
+
+<h2 id="addProductTitle">
+➕ Add Product
+</h2>
+
+<label id="productNameLabel">
+Product Name
+</label>
+
+<input
+id="productName"
+type="text"
+placeholder="Enter product name">
+
+<label id="barcodeLabel">
+Barcode / Code
+</label>
+
+<input
+id="barcode"
+type="text"
+placeholder="Enter barcode">
+
+<label id="unitLabel">
+Unit
+</label>
+
+<input
+id="unit"
+type="text"
+placeholder="Example: pcs, box, kg">
+
+<label id="startingStockLabel">
+Starting Stock
+</label>
+
+<input
+id="startingStock"
+type="number"
+min="0"
+step="any"
+value="0">
+
+<label id="minimumStockLabel">
+Minimum Stock
+</label>
+
+<input
+id="minimumStock"
+type="number"
+min="0"
+step="any"
+value="0">
+
+<div class="buttons">
+
+<button
+id="addProductBtn"
+class="add-btn"
+onclick="addProduct()">
+➕ Add Product
+</button>
+
+<button
+id="clearBtn"
+class="clear-btn"
+onclick="clearProductForm()">
+🔄 Clear
+</button>
+
+</div>
+
+</div>
+
+<!-- LOW STOCK -->
+
+<div class="section">
+
+<h2 id="lowStockAlertTitle">
+⚠️ Low Stock Alert
+</h2>
+
+<div id="lowStockList">
+<div class="no-low">Loading...</div>
+</div>
+
+</div>
+
+<!-- PRODUCTS -->
+
+<div class="section">
+
+<h2 id="productsTitle">
+📦 Products
+</h2>
+
+<input
+id="searchProduct"
+type="text"
+placeholder="🔍 Search product or barcode..."
+oninput="renderProducts()">
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th id="thProduct">Product</th>
+<th id="thBarcode">Barcode</th>
+<th id="thUnit">Unit</th>
+<th id="thStock">Stock</th>
+<th id="thMinimum">Minimum</th>
+<th id="thStatus">Status</th>
+<th id="thAction">Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productsTable">
+
+<tr>
+<td colspan="7">Loading...</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- HISTORY -->
+
+<div class="section">
+
+<h2 id="historyTitle">
+📜 Stock Movement History
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th id="thDate">Date</th>
+<th id="thHistoryProduct">Product</th>
+<th id="thType">Type</th>
+<th id="thQuantity">Quantity</th>
+<th id="thWorker">Worker</th>
+
+</tr>
+
+</thead>
+
+<tbody id="historyTable">
+
+<tr>
+<td colspan="5">Loading...</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
 
 <footer>
-  © 2026 EXIT Warehouse
+© 2026 EXIT Warehouse
 </footer>
-
 
 <script>
 
 "use strict";
 
-
-/* =========================================================
+/* =====================================================
    SUPABASE
-   ========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
-  "https://ctucsrwfqlbscbfkmxyh.supabase.co";
+"https://ctucsrwfqlbscbfkmxyh.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_OE0S0YBMDtb1HZ9NHQCudw_ZE1X74e4";
+"sb_publishable_OE0S0YBMDtb1HZ9NHQCudw_ZE1X74e4";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
 
 
-/* =========================================================
-   DATA
-   ========================================================= */
+/* =====================================================
+   APP DATA
+===================================================== */
 
 let products = [];
 let moves = [];
 
 let currentLanguage =
-  localStorage.getItem("exitWarehouseLanguage") || "en";
+localStorage.getItem("exitWarehouseLanguage") || "en";
 
 
-/* =========================================================
+/* =====================================================
    TRANSLATIONS
-   ========================================================= */
+===================================================== */
 
 const translations = {
 
 en:{
 
 pageTitle:"EXIT Warehouse",
-
 subtitle:"Inventory Management System",
 
 totalProducts:"📦 Total Products",
-
 stockIn:"🟢 Stock In",
-
 stockOut:"🔴 Stock Out",
-
 lowStock:"⚠️ Low Stock",
 
 stockMovement:"Stock Movement",
 
 product:"Product",
-
 selectProduct:"Select product",
 
 quantity:"Quantity",
-
 enterQuantity:"Enter quantity",
 
 worker:"Worker",
-
 workerPlaceholder:"Enter worker name",
 
 addProduct:"➕ Add Product",
 
 productName:"Product Name",
-
 enterProductName:"Enter product name",
 
 barcode:"Barcode / Code",
-
 enterBarcode:"Enter barcode",
 
 unit:"Unit",
-
 unitPlaceholder:"Example: pcs, box, kg",
 
 startingStock:"Starting Stock",
-
 minimumStock:"Minimum Stock",
 
 clear:"🔄 Clear",
@@ -913,124 +792,86 @@ products:"📦 Products",
 search:"🔍 Search product or barcode...",
 
 date:"Date",
-
 historyProduct:"Product",
-
 historyTitle:"📜 Stock Movement History",
-
 type:"Type",
-
 workerHeader:"Worker",
 
 action:"Action",
-
 code:"Barcode",
-
 stock:"Stock",
-
 minimum:"Minimum",
-
-stockText:"Stock",
-
-minimumText:"Minimum",
-
 status:"Status",
 
 low:"LOW",
-
 ok:"OK",
-
 delete:"Delete",
 
 noProducts:"No products found.",
-
 noMovements:"No movements yet.",
-
 noLowStock:"✅ No low-stock products",
 
 loading:"Loading...",
-
 connecting:"Connecting to Supabase...",
-
 ready:"EXIT Warehouse ready.",
 
 unableProducts:"Unable to load products: ",
-
 unableHistory:"Unable to load history: ",
 
 selectProductError:"Please select a product.",
-
 quantityError:"Please enter a quantity greater than zero.",
-
 productNameError:"Please enter a product name.",
-
 invalidStock:"Invalid stock value.",
 
 transactionFailed:"Transaction failed: ",
-
 addFailed:"Could not add product: ",
-
 deleteFailed:"Could not delete product: ",
 
 productAdded:"Product added successfully.",
-
 productDeleted:"Product deleted successfully.",
 
 notEnough:"Not enough stock. Current stock: ",
 
 added:"added to",
-
 removed:"removed from",
 
 confirmDelete:"Are you sure you want to delete this product?"
 
 },
 
-
 ar:{
 
 pageTitle:"مستودع EXIT",
-
 subtitle:"نظام إدارة المخزون",
 
 totalProducts:"📦 إجمالي المنتجات",
-
 stockIn:"🟢 إدخال المخزون",
-
 stockOut:"🔴 إخراج المخزون",
-
 lowStock:"⚠️ مخزون منخفض",
 
 stockMovement:"حركة المخزون",
 
 product:"المنتج",
-
 selectProduct:"اختر المنتج",
 
 quantity:"الكمية",
-
 enterQuantity:"أدخل الكمية",
 
 worker:"العامل",
-
 workerPlaceholder:"أدخل اسم العامل",
 
 addProduct:"➕ إضافة منتج",
 
 productName:"اسم المنتج",
-
 enterProductName:"أدخل اسم المنتج",
 
 barcode:"الباركود / الرمز",
-
 enterBarcode:"أدخل الباركود",
 
 unit:"الوحدة",
-
 unitPlaceholder:"مثال: قطعة، صندوق، كجم",
 
 startingStock:"المخزون الابتدائي",
-
 minimumStock:"الحد الأدنى للمخزون",
 
 clear:"🔄 مسح",
@@ -1042,124 +883,86 @@ products:"📦 المنتجات",
 search:"🔍 ابحث عن المنتج أو الباركود...",
 
 date:"التاريخ",
-
 historyProduct:"المنتج",
-
 historyTitle:"📜 سجل حركة المخزون",
-
 type:"النوع",
-
 workerHeader:"العامل",
 
 action:"الإجراء",
-
 code:"الباركود",
-
 stock:"المخزون",
-
 minimum:"الحد الأدنى",
-
-stockText:"المخزون",
-
-minimumText:"الحد الأدنى",
-
 status:"الحالة",
 
 low:"منخفض",
-
 ok:"جيد",
-
 delete:"حذف",
 
 noProducts:"لم يتم العثور على منتجات.",
-
 noMovements:"لا توجد حركات حتى الآن.",
-
 noLowStock:"✅ لا توجد منتجات منخفضة المخزون",
 
 loading:"جارٍ التحميل...",
-
 connecting:"جارٍ الاتصال بـ Supabase...",
-
 ready:"مستودع EXIT جاهز.",
 
 unableProducts:"تعذر تحميل المنتجات: ",
-
 unableHistory:"تعذر تحميل السجل: ",
 
 selectProductError:"يرجى اختيار منتج.",
-
 quantityError:"يرجى إدخال كمية أكبر من صفر.",
-
 productNameError:"يرجى إدخال اسم المنتج.",
-
 invalidStock:"قيمة المخزون غير صالحة.",
 
 transactionFailed:"فشلت العملية: ",
-
 addFailed:"تعذر إضافة المنتج: ",
-
 deleteFailed:"تعذر حذف المنتج: ",
 
 productAdded:"تمت إضافة المنتج بنجاح.",
-
 productDeleted:"تم حذف المنتج بنجاح.",
 
 notEnough:"المخزون غير كافٍ. المخزون الحالي: ",
 
 added:"تمت الإضافة إلى",
-
 removed:"تم الإخراج من",
 
 confirmDelete:"هل أنت متأكد أنك تريد حذف هذا المنتج؟"
 
 },
 
-
 te:{
 
 pageTitle:"EXIT గిడ్డంగి",
-
 subtitle:"ఇన్వెంటరీ నిర్వహణ వ్యవస్థ",
 
 totalProducts:"📦 మొత్తం ఉత్పత్తులు",
-
 stockIn:"🟢 స్టాక్ ఇన్",
-
 stockOut:"🔴 స్టాక్ అవుట్",
-
 lowStock:"⚠️ తక్కువ స్టాక్",
 
 stockMovement:"స్టాక్ కదలిక",
 
 product:"ఉత్పత్తి",
-
 selectProduct:"ఉత్పత్తిని ఎంచుకోండి",
 
 quantity:"పరిమాణం",
-
 enterQuantity:"పరిమాణాన్ని నమోదు చేయండి",
 
 worker:"కార్మికుడు",
-
 workerPlaceholder:"కార్మికుడి పేరు నమోదు చేయండి",
 
 addProduct:"➕ ఉత్పత్తిని జోడించండి",
 
 productName:"ఉత్పత్తి పేరు",
-
 enterProductName:"ఉత్పత్తి పేరు నమోదు చేయండి",
 
 barcode:"బార్‌కోడ్ / కోడ్",
-
 enterBarcode:"బార్‌కోడ్ నమోదు చేయండి",
 
 unit:"యూనిట్",
-
 unitPlaceholder:"ఉదాహరణ: pcs, box, kg",
 
 startingStock:"ప్రారంభ స్టాక్",
-
 minimumStock:"కనిష్ట స్టాక్",
 
 clear:"🔄 క్లియర్",
@@ -1171,73 +974,47 @@ products:"📦 ఉత్పత్తులు",
 search:"🔍 ఉత్పత్తి లేదా బార్‌కోడ్ కోసం వెతకండి...",
 
 date:"తేదీ",
-
 historyProduct:"ఉత్పత్తి",
-
 historyTitle:"📜 స్టాక్ కదలిక చరిత్ర",
-
 type:"రకం",
-
 workerHeader:"కార్మికుడు",
 
 action:"చర్య",
-
 code:"బార్‌కోడ్",
-
 stock:"స్టాక్",
-
 minimum:"కనిష్టం",
-
-stockText:"స్టాక్",
-
-minimumText:"కనిష్టం",
-
 status:"స్థితి",
 
 low:"తక్కువ",
-
 ok:"సరే",
-
 delete:"తొలగించు",
 
 noProducts:"ఉత్పత్తులు కనుగొనబడలేదు.",
-
 noMovements:"ఇంకా కదలికలు లేవు.",
-
 noLowStock:"✅ తక్కువ స్టాక్ ఉన్న ఉత్పత్తులు లేవు",
 
 loading:"లోడ్ అవుతోంది...",
-
 connecting:"Supabaseకి కనెక్ట్ అవుతోంది...",
-
 ready:"EXIT గిడ్డంగి సిద్ధంగా ఉంది.",
 
 unableProducts:"ఉత్పత్తులను లోడ్ చేయడం సాధ్యం కాలేదు: ",
-
 unableHistory:"చరిత్రను లోడ్ చేయడం సాధ్యం కాలేదు: ",
 
 selectProductError:"దయచేసి ఒక ఉత్పత్తిని ఎంచుకోండి.",
-
 quantityError:"సున్నా కంటే ఎక్కువ పరిమాణాన్ని నమోదు చేయండి.",
-
 productNameError:"దయచేసి ఉత్పత్తి పేరు నమోదు చేయండి.",
-
 invalidStock:"స్టాక్ విలువ చెల్లదు.",
 
 transactionFailed:"లావాదేవీ విఫలమైంది: ",
-
 addFailed:"ఉత్పత్తిని జోడించడం సాధ్యం కాలేదు: ",
-
 deleteFailed:"ఉత్పత్తిని తొలగించడం సాధ్యం కాలేదు: ",
 
 productAdded:"ఉత్పత్తి విజయవంతంగా జోడించబడింది.",
-
 productDeleted:"ఉత్పత్తి విజయవంతంగా తొలగించబడింది.",
 
 notEnough:"తగినంత స్టాక్ లేదు. ప్రస్తుత స్టాక్: ",
 
 added:"జోడించబడింది",
-
 removed:"తీసివేయబడింది",
 
 confirmDelete:"మీరు ఈ ఉత్పత్తిని తొలగించాలనుకుంటున్నారా?"
@@ -1247,1306 +1024,1192 @@ confirmDelete:"మీరు ఈ ఉత్పత్తిని తొలగి�
 };
 
 
-/* =========================================================
-   HELPER
-   ========================================================= */
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function t(key){
 
-  return translations[currentLanguage][key] ||
-         translations.en[key] ||
-         key;
+return translations[currentLanguage]?.[key] ||
+translations.en[key] ||
+key;
+
 }
 
 
 function escapeHTML(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function formatNumber(value){
+
+const n=Number(value);
+
+if(!Number.isFinite(n)){
+return "0";
+}
+
+return Number.isInteger(n)
+? String(n)
+: n.toFixed(2).replace(/\.?0+$/,"");
 
 }
 
 
 function showStatus(message,type="success"){
 
-  const box=document.getElementById("status");
+const box=document.getElementById("status");
 
-  box.textContent=message;
+box.textContent=message;
+box.className="status "+type;
 
-  box.className="status "+type;
+clearTimeout(showStatus.timer);
 
-  setTimeout(()=>{
+showStatus.timer=setTimeout(()=>{
 
-    box.className="status";
+box.className="status";
+box.textContent="";
 
-    box.textContent="";
-
-  },4000);
+},4000);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LANGUAGE
-   ========================================================= */
+===================================================== */
 
 function setLanguage(language){
 
-  if(!translations[language]){
-    language="en";
-  }
+if(!translations[language]){
+language="en";
+}
 
-  currentLanguage=language;
+currentLanguage=language;
 
-  localStorage.setItem(
-    "exitWarehouseLanguage",
-    language
-  );
+localStorage.setItem(
+"exitWarehouseLanguage",
+language
+);
 
-  document.documentElement.lang=language;
+document.documentElement.lang=language;
 
-  document.documentElement.dir=
-    language==="ar" ? "rtl" : "ltr";
+document.documentElement.dir=
+language==="ar" ? "rtl" : "ltr";
 
-  applyTranslations();
+applyTranslations();
 
-  renderProducts();
-
-  renderHistory();
-
-  renderLowStock();
-
-  updateProductSelect();
+updateProductSelect();
+renderProducts();
+renderLowStock();
+renderHistory();
 
 }
 
 
 function applyTranslations(){
 
-  document.title=t("pageTitle");
+document.title=t("pageTitle");
 
-  document.getElementById("appTitle").textContent=
-    t("pageTitle");
+document.getElementById("appTitle").textContent=
+t("pageTitle");
 
-  document.getElementById("appSubtitle").textContent=
-    t("subtitle");
+document.getElementById("appSubtitle").textContent=
+t("subtitle");
 
-  document.getElementById("totalProductsLabel").textContent=
-    t("totalProducts");
+document.getElementById("totalProductsLabel").textContent=
+t("totalProducts");
 
-  document.getElementById("stockInLabel").textContent=
-    t("stockIn");
+document.getElementById("stockInLabel").textContent=
+t("stockIn");
 
-  document.getElementById("stockOutLabel").textContent=
-    t("stockOut");
+document.getElementById("stockOutLabel").textContent=
+t("stockOut");
 
-  document.getElementById("lowStockLabel").textContent=
-    t("lowStock");
+document.getElementById("lowStockLabel").textContent=
+t("lowStock");
 
-  document.getElementById("stockMovementTitle").textContent=
-    t("stockMovement");
+document.getElementById("stockMovementTitle").textContent=
+t("stockMovement");
 
-  document.getElementById("productLabel").textContent=
-    t("product");
+document.getElementById("productLabel").textContent=
+t("product");
 
-  document.getElementById("quantityLabel").textContent=
-    t("quantity");
+document.getElementById("quantityLabel").textContent=
+t("quantity");
 
-  document.getElementById("workerLabel").textContent=
-    t("worker");
+document.getElementById("workerLabel").textContent=
+t("worker");
 
-  document.getElementById("stockInBtn").textContent=
-    t("stockIn");
+document.getElementById("addProductTitle").textContent=
+t("addProduct");
 
-  document.getElementById("stockOutBtn").textContent=
-    t("stockOut");
+document.getElementById("productNameLabel").textContent=
+t("productName");
 
-  document.getElementById("addProductTitle").textContent=
-    t("addProduct");
+document.getElementById("barcodeLabel").textContent=
+t("barcode");
 
-  document.getElementById("productNameLabel").textContent=
-    t("productName");
+document.getElementById("unitLabel").textContent=
+t("unit");
 
-  document.getElementById("barcodeLabel").textContent=
-    t("barcode");
+document.getElementById("startingStockLabel").textContent=
+t("startingStock");
 
-  document.getElementById("unitLabel").textContent=
-    t("unit");
+document.getElementById("minimumStockLabel").textContent=
+t("minimumStock");
 
-  document.getElementById("startingStockLabel").textContent=
-    t("startingStock");
+document.getElementById("lowStockAlertTitle").textContent=
+t("lowStockAlert");
 
-  document.getElementById("minimumStockLabel").textContent=
-    t("minimumStock");
+document.getElementById("productsTitle").textContent=
+t("products");
 
-  document.getElementById("addProductBtn").textContent=
-    t("addProduct");
+document.getElementById("historyTitle").textContent=
+t("historyTitle");
 
-  document.getElementById("clearBtn").textContent=
-    t("clear");
+document.getElementById("stockInBtn").textContent=
+t("stockIn");
 
-  document.getElementById("lowStockAlertTitle").textContent=
-    t("lowStockAlert");
+document.getElementById("stockOutBtn").textContent=
+t("stockOut");
 
-  document.getElementById("productsTitle").textContent=
-    t("products");
+document.getElementById("addProductBtn").textContent=
+t("addProduct");
 
-  document.getElementById("historyTitle").textContent=
-    t("historyTitle");
+document.getElementById("clearBtn").textContent=
+t("clear");
 
-  document.getElementById("thProduct").textContent=
-    t("product");
+document.getElementById("thProduct").textContent=
+t("product");
 
-  document.getElementById("thBarcode").textContent=
-    t("code");
+document.getElementById("thBarcode").textContent=
+t("code");
 
-  document.getElementById("thUnit").textContent=
-    t("unit");
+document.getElementById("thUnit").textContent=
+t("unit");
 
-  document.getElementById("thStock").textContent=
-    t("stock");
+document.getElementById("thStock").textContent=
+t("stock");
 
-  document.getElementById("thMinimum").textContent=
-    t("minimum");
+document.getElementById("thMinimum").textContent=
+t("minimum");
 
-  document.getElementById("thStatus").textContent=
-    t("status");
+document.getElementById("thStatus").textContent=
+t("status");
 
-  document.getElementById("thAction").textContent=
-    t("action");
+document.getElementById("thAction").textContent=
+t("action");
 
-  document.getElementById("thDate").textContent=
-    t("date");
+document.getElementById("thDate").textContent=
+t("date");
 
-  document.getElementById("thHistoryProduct").textContent=
-    t("historyProduct");
+document.getElementById("thHistoryProduct").textContent=
+t("historyProduct");
 
-  document.getElementById("thType").textContent=
-    t("type");
+document.getElementById("thType").textContent=
+t("type");
 
-  document.getElementById("thQuantity").textContent=
-    t("quantity");
+document.getElementById("thQuantity").textContent=
+t("quantity");
 
-  document.getElementById("thWorker").textContent=
-    t("workerHeader");
+document.getElementById("thWorker").textContent=
+t("workerHeader");
 
-  document.getElementById("productName").placeholder=
-    t("enterProductName");
+document.getElementById("productName").placeholder=
+t("enterProductName");
 
-  document.getElementById("barcode").placeholder=
-    t("enterBarcode");
+document.getElementById("barcode").placeholder=
+t("enterBarcode");
 
-  document.getElementById("unit").placeholder=
-    t("unitPlaceholder");
+document.getElementById("unit").placeholder=
+t("unitPlaceholder");
 
-  document.getElementById("quantity").placeholder=
-    t("enterQuantity");
+document.getElementById("quantity").placeholder=
+t("enterQuantity");
 
-  document.getElementById("worker").placeholder=
-    t("workerPlaceholder");
+document.getElementById("worker").placeholder=
+t("workerPlaceholder");
 
-  document.getElementById("searchProduct").placeholder=
-    t("search");
+document.getElementById("searchProduct").placeholder=
+t("search");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOAD PRODUCTS
-   ========================================================= */
+===================================================== */
 
 async function loadProducts(){
 
-  const table=document.getElementById("productsTable");
+const table=document.getElementById("productsTable");
 
-  table.innerHTML=
-    `<tr><td colspan="7">${escapeHTML(t("loading"))}</td></tr>`;
+table.innerHTML=
+`<tr><td colspan="7">${escapeHTML(t("loading"))}</td></tr>`;
 
-  const {data,error}=await supabaseClient
-    .from("products")
-    .select("*")
-    .order("name",{ascending:true});
+const result=await supabaseClient
+.from("products")
+.select("*")
+.order("name",{ascending:true});
 
-  if(error){
+if(result.error){
 
-    console.error(error);
+console.error(result.error);
 
-    table.innerHTML=
-      `<tr><td colspan="7">${escapeHTML(
-        t("unableProducts")+error.message
-      )}</td></tr>`;
+table.innerHTML=
+`<tr><td colspan="7">
+${escapeHTML(t("unableProducts")+result.error.message)}
+</td></tr>`;
 
-    showStatus(
-      t("unableProducts")+error.message,
-      "error"
-    );
+showStatus(
+t("unableProducts")+result.error.message,
+"error"
+);
 
-    return;
-  }
+return false;
 
-  products=data || [];
+}
 
-  updateDashboard();
+products=result.data || [];
 
-  updateProductSelect();
+updateDashboard();
+updateProductSelect();
+renderProducts();
+renderLowStock();
 
-  renderProducts();
-
-  renderLowStock();
+return true;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOAD HISTORY
-   ========================================================= */
+===================================================== */
 
 async function loadHistory(){
 
-  const table=document.getElementById("historyTable");
+const table=document.getElementById("historyTable");
 
-  table.innerHTML=
-    `<tr><td colspan="5">${escapeHTML(t("loading"))}</td></tr>`;
+table.innerHTML=
+`<tr><td colspan="5">${escapeHTML(t("loading"))}</td></tr>`;
 
-  const {data,error}=await supabaseClient
-    .from("stock_transactions")
-    .select("*")
-    .order("created_at",{ascending:false})
-    .limit(200);
+const result=await supabaseClient
+.from("stock_transactions")
+.select("*")
+.order("created_at",{ascending:false})
+.limit(200);
 
-  if(error){
+if(result.error){
 
-    console.error(error);
+console.error(result.error);
 
-    table.innerHTML=
-      `<tr><td colspan="5">${escapeHTML(
-        t("unableHistory")+error.message
-      )}</td></tr>`;
+table.innerHTML=
+`<tr><td colspan="5">
+${escapeHTML(t("unableHistory")+result.error.message)}
+</td></tr>`;
 
-    showStatus(
-      t("unableHistory")+error.message,
-      "error"
-    );
+showStatus(
+t("unableHistory")+result.error.message,
+"error"
+);
 
-    return;
-  }
+return false;
 
-  moves=data || [];
+}
 
-  renderHistory();
+moves=result.data || [];
 
-  updateDashboard();
+renderHistory();
+updateDashboard();
+
+return true;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DASHBOARD
-   ========================================================= */
+===================================================== */
 
 function updateDashboard(){
 
-  document.getElementById("totalProducts").textContent=
-    products.length;
+document.getElementById("totalProducts").textContent=
+products.length;
 
-  let stockIn=0;
+let totalIn=0;
+let totalOut=0;
 
-  let stockOut=0;
+moves.forEach(move=>{
 
-  moves.forEach(move=>{
+const type=String(
+move.transaction_type ||
+move.type ||
+""
+).toLowerCase();
 
-    const type=String(
-      move.transaction_type ||
-      move.type ||
-      ""
-    ).toLowerCase();
+const quantity=Number(move.quantity || 0);
 
-    const quantity=Number(
-      move.quantity || 0
-    );
+if(
+type==="in" ||
+type==="stock_in" ||
+type==="stock in"
+){
 
-    if(
-      type==="in" ||
-      type==="stock_in" ||
-      type==="stock in"
-    ){
+totalIn+=quantity;
 
-      stockIn+=quantity;
+}
 
-    }
+if(
+type==="out" ||
+type==="stock_out" ||
+type==="stock out"
+){
 
-    if(
-      type==="out" ||
-      type==="stock_out" ||
-      type==="stock out"
-    ){
+totalOut+=quantity;
 
-      stockOut+=quantity;
+}
 
-    }
+});
 
-  });
+document.getElementById("stockIn").textContent=
+formatNumber(totalIn);
 
+document.getElementById("stockOut").textContent=
+formatNumber(totalOut);
 
-  document.getElementById("stockIn").textContent=
-    formatNumber(stockIn);
+const low=products.filter(product=>{
 
-  document.getElementById("stockOut").textContent=
-    formatNumber(stockOut);
+return Number(product.stock || 0)
+<=
+Number(product.minimum_stock || 0);
 
+});
 
-  const lowCount=products.filter(
-    p=>Number(p.stock || 0)<=
-       Number(p.minimum_stock || 0)
-  ).length;
-
-
-  document.getElementById("lowStock").textContent=
-    lowCount;
+document.getElementById("lowStock").textContent=
+low.length;
 
 }
 
 
-function formatNumber(number){
-
-  const n=Number(number);
-
-  if(!Number.isFinite(n)){
-    return "0";
-  }
-
-  return Number.isInteger(n)
-    ? String(n)
-    : n.toFixed(2).replace(/\.?0+$/,"");
-
-}
-
-
-/* =========================================================
+/* =====================================================
    PRODUCT SELECT
-   ========================================================= */
+===================================================== */
 
 function updateProductSelect(){
 
-  const select=document.getElementById("productSelect");
+const select=document.getElementById("productSelect");
 
-  const oldValue=select.value;
+const previous=select.value;
 
-  select.innerHTML="";
+select.innerHTML="";
 
+const first=document.createElement("option");
 
-  const first=document.createElement("option");
+first.value="";
+first.textContent=t("selectProduct");
 
-  first.value="";
+select.appendChild(first);
 
-  first.textContent=
-    t("selectProduct");
+products.forEach(product=>{
 
-  select.appendChild(first);
+const option=document.createElement("option");
 
+option.value=product.id;
 
-  products.forEach(product=>{
+option.textContent=
+product.name +
+(
+product.barcode
+? " — "+product.barcode
+: ""
+);
 
-    const option=document.createElement("option");
+select.appendChild(option);
 
-    option.value=product.id;
+});
 
-    const barcode=product.barcode
-      ? ` — ${product.barcode}`
-      : "";
+if(
+products.some(
+product=>String(product.id)===String(previous)
+)
+){
 
-    option.textContent=
-      product.name + barcode;
+select.value=previous;
 
-    select.appendChild(option);
-
-  });
-
-
-  if(
-    products.some(
-      p=>String(p.id)===String(oldValue)
-    )
-  ){
-
-    select.value=oldValue;
-
-  }
+}
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER PRODUCTS
-   ========================================================= */
+===================================================== */
 
 function renderProducts(){
 
-  const table=document.getElementById("productsTable");
+const table=document.getElementById("productsTable");
 
-  const search=
-    document.getElementById("searchProduct")
-      .value
-      .trim()
-      .toLowerCase();
+const search=document
+.getElementById("searchProduct")
+.value
+.trim()
+.toLowerCase();
 
+const filtered=products.filter(product=>{
 
-  const filtered=products.filter(product=>{
+const name=String(product.name || "")
+.toLowerCase();
 
-    const name=String(
-      product.name || ""
-    ).toLowerCase();
+const barcode=String(product.barcode || "")
+.toLowerCase();
 
-    const barcode=String(
-      product.barcode || ""
-    ).toLowerCase();
+return name.includes(search) ||
+barcode.includes(search);
 
-    return(
-      name.includes(search) ||
-      barcode.includes(search)
-    );
+});
 
-  });
+if(filtered.length===0){
 
+table.innerHTML=
+`<tr><td colspan="7">
+${escapeHTML(t("noProducts"))}
+</td></tr>`;
 
-  if(filtered.length===0){
+return;
 
-    table.innerHTML=
-      `<tr><td colspan="7">${escapeHTML(
-        t("noProducts")
-      )}</td></tr>`;
+}
 
-    return;
+table.innerHTML="";
 
-  }
+filtered.forEach(product=>{
 
+const stock=Number(product.stock || 0);
 
-  table.innerHTML="";
+const minimum=
+Number(product.minimum_stock || 0);
 
+const isLow=stock<=minimum;
 
-  filtered.forEach(product=>{
+const tr=document.createElement("tr");
 
-    const stock=Number(
-      product.stock || 0
-    );
+tr.innerHTML=`
 
-    const minimum=Number(
-      product.minimum_stock || 0
-    );
+<td data-label="${escapeHTML(t("product"))}">
+${escapeHTML(product.name)}
+</td>
 
-    const isLow=
-      stock<=minimum;
+<td data-label="${escapeHTML(t("code"))}">
+${escapeHTML(product.barcode || "-")}
+</td>
 
+<td data-label="${escapeHTML(t("unit"))}">
+${escapeHTML(product.unit || "-")}
+</td>
 
-    const tr=document.createElement("tr");
+<td data-label="${escapeHTML(t("stock"))}">
+${formatNumber(stock)}
+</td>
 
+<td data-label="${escapeHTML(t("minimum"))}">
+${formatNumber(minimum)}
+</td>
 
-    tr.innerHTML=`
+<td data-label="${escapeHTML(t("status"))}">
+${
+isLow
+?
+`<span class="low-badge">${escapeHTML(t("low"))}</span>`
+:
+`<span class="ok">${escapeHTML(t("ok"))}</span>`
+}
+</td>
 
-      <td data-label="${escapeHTML(t("product"))}">
-        ${escapeHTML(product.name)}
-      </td>
+<td data-label="${escapeHTML(t("action"))}">
 
-      <td data-label="${escapeHTML(t("code"))}">
-        ${escapeHTML(product.barcode || "-")}
-      </td>
+<button
+class="delete-btn"
+type="button"
+data-id="${escapeHTML(product.id)}">
+🗑️ ${escapeHTML(t("delete"))}
+</button>
 
-      <td data-label="${escapeHTML(t("unit"))}">
-        ${escapeHTML(product.unit || "-")}
-      </td>
+</td>
 
-      <td data-label="${escapeHTML(t("stock"))}">
-        ${formatNumber(stock)}
-      </td>
+`;
 
-      <td data-label="${escapeHTML(t("minimum"))}">
-        ${formatNumber(minimum)}
-      </td>
+tr.querySelector(".delete-btn")
+.addEventListener("click",()=>{
 
-      <td data-label="${escapeHTML(t("status"))}">
-        ${
-          isLow
-          ? `<span class="low-badge">
-               ${escapeHTML(t("low"))}
-             </span>`
-          : `<span class="ok">
-               ${escapeHTML(t("ok"))}
-             </span>`
-        }
-      </td>
+deleteProduct(product.id);
 
-      <td data-label="${escapeHTML(t("action"))}">
+});
 
-        <button
-          class="delete-btn"
-          onclick="deleteProduct('${String(product.id)}')"
-        >
-          🗑️ ${escapeHTML(t("delete"))}
-        </button>
+table.appendChild(tr);
 
-      </td>
-
-    `;
-
-
-    table.appendChild(tr);
-
-  });
+});
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOW STOCK
-   ========================================================= */
+===================================================== */
 
 function renderLowStock(){
 
-  const box=
-    document.getElementById("lowStockList");
+const box=document.getElementById("lowStockList");
 
+const lowProducts=products.filter(product=>{
 
-  const lowProducts=
-    products.filter(product=>{
+return Number(product.stock || 0)
+<=
+Number(product.minimum_stock || 0);
 
-      const stock=
-        Number(product.stock || 0);
+});
 
-      const minimum=
-        Number(product.minimum_stock || 0);
+if(lowProducts.length===0){
 
-      return stock<=minimum;
+box.innerHTML=
+`<div class="no-low">
+${escapeHTML(t("noLowStock"))}
+</div>`;
 
-    });
+return;
 
+}
 
-  if(lowProducts.length===0){
+box.innerHTML="";
 
-    box.innerHTML=
-      `<div class="no-low">
-        ${escapeHTML(t("noLowStock"))}
-      </div>`;
+lowProducts.forEach(product=>{
 
-    return;
+const div=document.createElement("div");
 
-  }
+div.className="alert";
 
+div.innerHTML=`
 
-  box.innerHTML="";
+<strong>
+${escapeHTML(product.name)}
+</strong>
 
+<br>
 
-  lowProducts.forEach(product=>{
+${escapeHTML(t("stockText") || t("stock"))}:
+${formatNumber(product.stock)}
 
-    const div=document.createElement("div");
+&nbsp; | &nbsp;
 
-    div.className="alert";
+${escapeHTML(t("minimum") || "Minimum")}:
+${formatNumber(product.minimum_stock)}
 
+`;
 
-    div.innerHTML=`
+box.appendChild(div);
 
-      <strong>
-        ${escapeHTML(product.name)}
-      </strong>
-
-      <br>
-
-      ${escapeHTML(t("stockText"))}:
-      ${formatNumber(product.stock)}
-
-      |
-
-      ${escapeHTML(t("minimumText"))}:
-      ${formatNumber(product.minimum_stock)}
-
-    `;
-
-
-    box.appendChild(div);
-
-  });
+});
 
 }
 
 
-/* =========================================================
+/* =====================================================
    ADD PRODUCT
-   ========================================================= */
+===================================================== */
 
 async function addProduct(){
 
-  const name=
-    document.getElementById("productName")
-      .value
-      .trim();
+const name=document
+.getElementById("productName")
+.value
+.trim();
 
+const barcode=document
+.getElementById("barcode")
+.value
+.trim();
 
-  const barcode=
-    document.getElementById("barcode")
-      .value
-      .trim();
+const unit=document
+.getElementById("unit")
+.value
+.trim();
 
+const startingStock=Number(
+document.getElementById("startingStock").value
+);
 
-  const unit=
-    document.getElementById("unit")
-      .value
-      .trim();
+const minimumStock=Number(
+document.getElementById("minimumStock").value
+);
 
+if(!name){
 
-  const startingStock=
-    Number(
-      document.getElementById("startingStock")
-        .value
-    );
+showStatus(
+t("productNameError"),
+"error"
+);
 
+return;
 
-  const minimumStock=
-    Number(
-      document.getElementById("minimumStock")
-        .value
-    );
+}
 
+if(
+!Number.isFinite(startingStock) ||
+startingStock<0 ||
+!Number.isFinite(minimumStock) ||
+minimumStock<0
+){
 
-  if(!name){
+showStatus(
+t("invalidStock"),
+"error"
+);
 
-    showStatus(
-      t("productNameError"),
-      "error"
-    );
+return;
 
-    return;
+}
 
-  }
+const button=
+document.getElementById("addProductBtn");
 
+button.disabled=true;
 
-  if(
-    !Number.isFinite(startingStock) ||
-    startingStock<0 ||
-    !Number.isFinite(minimumStock) ||
-    minimumStock<0
-  ){
+try{
 
-    showStatus(
-      t("invalidStock"),
-      "error"
-    );
+const result=await supabaseClient
+.from("products")
+.insert([{
 
-    return;
+name:name,
+barcode:barcode || null,
+unit:unit || null,
+stock:startingStock,
+minimum_stock:minimumStock
 
-  }
+}])
+.select()
+.single();
 
+if(result.error){
 
-  const button=
-    document.getElementById("addProductBtn");
+throw result.error;
 
-  button.disabled=true;
+}
 
+if(result.data){
 
-  const {data,error}=
-    await supabaseClient
-      .from("products")
-      .insert([{
+products.push(result.data);
 
-        name:name,
+products.sort((a,b)=>
+String(a.name || "")
+.localeCompare(
+String(b.name || "")
+)
+);
 
-        barcode:
-          barcode || null,
+}
 
-        unit:
-          unit || null,
+clearProductForm();
 
-        stock:
-          startingStock,
+updateDashboard();
+updateProductSelect();
+renderProducts();
+renderLowStock();
 
-        minimum_stock:
-          minimumStock
+showStatus(
+t("productAdded"),
+"success"
+);
 
-      }])
-      .select()
-      .single();
+}catch(error){
 
+console.error(error);
 
-  button.disabled=false;
+showStatus(
+t("addFailed")+
+(error.message || error),
+"error"
+);
 
+}finally{
 
-  if(error){
+button.disabled=false;
 
-    console.error(error);
-
-    showStatus(
-      t("addFailed")+error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  products.push(data);
-
-
-  products.sort((a,b)=>
-    String(a.name || "")
-      .localeCompare(
-        String(b.name || "")
-      )
-  );
-
-
-  clearProductForm();
-
-
-  updateDashboard();
-
-  updateProductSelect();
-
-  renderProducts();
-
-  renderLowStock();
-
-
-  showStatus(
-    t("productAdded"),
-    "success"
-  );
+}
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CLEAR FORM
-   ========================================================= */
+===================================================== */
 
 function clearProductForm(){
 
-  document.getElementById("productName").value="";
-
-  document.getElementById("barcode").value="";
-
-  document.getElementById("unit").value="";
-
-  document.getElementById("startingStock").value="0";
-
-  document.getElementById("minimumStock").value="0";
+document.getElementById("productName").value="";
+document.getElementById("barcode").value="";
+document.getElementById("unit").value="";
+document.getElementById("startingStock").value="0";
+document.getElementById("minimumStock").value="0";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DELETE PRODUCT
-   ========================================================= */
+===================================================== */
 
 async function deleteProduct(id){
 
-  if(!confirm(t("confirmDelete"))){
-    return;
-  }
+if(!confirm(t("confirmDelete"))){
+return;
+}
 
+try{
 
-  const {error}=
-    await supabaseClient
-      .from("products")
-      .delete()
-      .eq("id",id);
+const result=await supabaseClient
+.from("products")
+.delete()
+.eq("id",id);
 
+if(result.error){
 
-  if(error){
+throw result.error;
 
-    console.error(error);
+}
 
-    showStatus(
-      t("deleteFailed")+error.message,
-      "error"
-    );
+products=products.filter(product=>
+String(product.id)!==
+String(id)
+);
 
-    return;
+moves=moves.filter(move=>
+String(
+move.product_id ||
+move.product ||
+""
+)!==
+String(id)
+);
 
-  }
+updateDashboard();
+updateProductSelect();
+renderProducts();
+renderLowStock();
+renderHistory();
 
+showStatus(
+t("productDeleted"),
+"success"
+);
 
-  products=
-    products.filter(
-      product=>
-        String(product.id)!==
-        String(id)
-    );
+}catch(error){
 
+console.error(error);
 
-  moves=
-    moves.filter(
-      move=>
-        String(
-          move.product_id ||
-          move.product
-        )!==
-        String(id)
-    );
+showStatus(
+t("deleteFailed")+
+(error.message || error),
+"error"
+);
 
-
-  updateDashboard();
-
-  updateProductSelect();
-
-  renderProducts();
-
-  renderLowStock();
-
-  renderHistory();
-
-
-  showStatus(
-    t("productDeleted"),
-    "success"
-  );
+}
 
 }
 
 
-/* =========================================================
+/* =====================================================
    STOCK MOVEMENT
-   ========================================================= */
+===================================================== */
 
 async function makeMovement(type){
 
-  const productId=
-    document.getElementById("productSelect")
-      .value;
+const productId=
+document.getElementById("productSelect").value;
 
+const quantity=Number(
+document.getElementById("quantity").value
+);
 
-  const quantity=
-    Number(
-      document.getElementById("quantity")
-        .value
-    );
+const worker=
+document.getElementById("worker")
+.value
+.trim();
 
+if(!productId){
 
-  const worker=
-    document.getElementById("worker")
-      .value
-      .trim();
+showStatus(
+t("selectProductError"),
+"error"
+);
 
+return;
 
-  if(!productId){
+}
 
-    showStatus(
-      t("selectProductError"),
-      "error"
-    );
+if(
+!Number.isFinite(quantity) ||
+quantity<=0
+){
 
-    return;
+showStatus(
+t("quantityError"),
+"error"
+);
 
-  }
+return;
 
+}
 
-  if(
-    !Number.isFinite(quantity) ||
-    quantity<=0
-  ){
+const product=products.find(p=>
+String(p.id)===String(productId)
+);
 
-    showStatus(
-      t("quantityError"),
-      "error"
-    );
+if(!product){
 
-    return;
+showStatus(
+t("selectProductError"),
+"error"
+);
 
-  }
+return;
 
+}
 
-  const product=
-    products.find(
-      p=>
-        String(p.id)===
-        String(productId)
-    );
+const currentStock=
+Number(product.stock || 0);
 
+if(
+type==="out" &&
+quantity>currentStock
+){
 
-  if(!product){
+showStatus(
+t("notEnough")+
+formatNumber(currentStock),
+"error"
+);
 
-    showStatus(
-      t("selectProductError"),
-      "error"
-    );
+return;
 
-    return;
+}
 
-  }
+const button=
+type==="in"
+?
+document.getElementById("stockInBtn")
+:
+document.getElementById("stockOutBtn");
 
+button.disabled=true;
 
-  const currentStock=
-    Number(product.stock || 0);
+try{
 
+let result=await supabaseClient
+.from("stock_transactions")
+.insert([{
 
-  if(
-    type==="out" &&
-    quantity>currentStock
-  ){
+product_id:productId,
 
-    showStatus(
-      t("notEnough")+
-      formatNumber(currentStock),
-      "error"
-    );
+transaction_type:type,
 
-    return;
+quantity:quantity,
 
-  }
+worker:worker || null
 
+}])
+.select()
+.single();
 
-  const button=
-    type==="in"
-    ? document.getElementById("stockInBtn")
-    : document.getElementById("stockOutBtn");
+if(
+result.error &&
+/transaction_type/i.test(
+result.error.message || ""
+)
+){
 
+result=await supabaseClient
+.from("stock_transactions")
+.insert([{
 
-  button.disabled=true;
+product_id:productId,
 
+type:type,
 
-  const transactionType=
-    type==="in"
-    ? "in"
-    : "out";
+quantity:quantity,
 
+worker:worker || null
 
-  const transactionData={
+}])
+.select()
+.single();
 
-    product_id:
-      productId,
+}
 
-    transaction_type:
-      transactionType,
+if(result.error){
 
-    quantity:
-      quantity,
+throw result.error;
 
-    worker:
-      worker || null
+}
 
-  };
+/*
+  Reload database values.
+  Your Supabase trigger/function should
+  update products.stock.
+*/
 
+await loadProducts();
+await loadHistory();
 
-  let transactionResult=
-    await supabaseClient
-      .from("stock_transactions")
-      .insert([transactionData])
-      .select()
-      .single();
+document.getElementById("quantity").value="";
+document.getElementById("worker").value="";
 
+showStatus(
 
-  /*
-    Compatibility with databases using
-    "type" instead of "transaction_type".
-  */
+type==="in"
+?
+formatNumber(quantity)+" "+t("added")+" "+product.name
+:
+formatNumber(quantity)+" "+t("removed")+" "+product.name,
 
-  if(
-    transactionResult.error &&
-    /transaction_type/i.test(
-      transactionResult.error.message || ""
-    )
-  ){
+"success"
 
-    transactionResult=
-      await supabaseClient
-        .from("stock_transactions")
-        .insert([{
+);
 
-          product_id:
-            productId,
+}catch(error){
 
-          type:
-            transactionType,
+console.error(error);
 
-          quantity:
-            quantity,
+showStatus(
+t("transactionFailed")+
+(error.message || error),
+"error"
+);
 
-          worker:
-            worker || null
+}finally{
 
-        }])
-        .select()
-        .single();
+button.disabled=false;
 
-  }
-
-
-  button.disabled=false;
-
-
-  if(transactionResult.error){
-
-    console.error(
-      transactionResult.error
-    );
-
-    showStatus(
-      t("transactionFailed")+
-      transactionResult.error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Reload actual database values.
-  */
-
-  await loadProducts();
-
-  await loadHistory();
-
-
-  document.getElementById("quantity").value="";
-
-  document.getElementById("worker").value="";
-
-
-  showStatus(
-
-    type==="in"
-
-      ? `${formatNumber(quantity)}
-         ${t("added")}
-         ${product.name}`
-
-      : `${formatNumber(quantity)}
-         ${t("removed")}
-         ${product.name}`,
-
-    "success"
-
-  );
+}
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HISTORY
-   ========================================================= */
+===================================================== */
 
 function renderHistory(){
 
-  const table=
-    document.getElementById("historyTable");
+const table=
+document.getElementById("historyTable");
 
+if(moves.length===0){
 
-  if(moves.length===0){
+table.innerHTML=
+`<tr><td colspan="5">
+${escapeHTML(t("noMovements"))}
+</td></tr>`;
 
-    table.innerHTML=
-      `<tr><td colspan="5">
-        ${escapeHTML(t("noMovements"))}
-      </td></tr>`;
+return;
 
-    return;
+}
 
-  }
+table.innerHTML="";
 
+moves.forEach(move=>{
 
-  table.innerHTML="";
+const productId=
+move.product_id ||
+move.productId ||
+move.product;
 
+const product=products.find(p=>
+String(p.id)===String(productId)
+);
 
-  moves.forEach(move=>{
+const productName=
+product
+?
+product.name
+:
+(
+move.product_name ||
+"-"
+);
 
-    const productId=
-      move.product_id ||
-      move.productId ||
-      move.product;
+const rawType=String(
+move.transaction_type ||
+move.type ||
+""
+).toLowerCase();
 
+const isIn=
+rawType==="in" ||
+rawType==="stock_in" ||
+rawType==="stock in";
 
-    const product=
-      products.find(
-        p=>
-          String(p.id)===
-          String(productId)
-      );
+const typeText=
+isIn
+?
+t("stockIn")
+:
+t("stockOut");
 
+const typeClass=
+isIn
+?
+"in-badge"
+:
+"out-badge";
 
-    const productName=
-      product
-      ? product.name
-      : (
-          move.product_name ||
-          "-"
-        );
+const dateValue=
+move.created_at ||
+move.date ||
+move.createdAt;
 
+const dateText=
+dateValue
+?
+formatDate(dateValue)
+:
+"-";
 
-    const rawType=
-      String(
-        move.transaction_type ||
-        move.type ||
-        ""
-      ).toLowerCase();
+const worker=
+move.worker ||
+move.worker_name ||
+move.employee ||
+"-";
 
+const quantity=
+Number(move.quantity || 0);
 
-    const isIn=
-      rawType==="in" ||
-      rawType==="stock_in" ||
-      rawType==="stock in";
+const tr=document.createElement("tr");
 
+tr.innerHTML=`
 
-    const typeText=
-      isIn
-      ? t("stockIn")
-      : t("stockOut");
+<td data-label="${escapeHTML(t("date"))}">
+${escapeHTML(dateText)}
+</td>
 
+<td data-label="${escapeHTML(t("historyProduct"))}">
+${escapeHTML(productName)}
+</td>
 
-    const typeClass=
-      isIn
-      ? "in-badge"
-      : "out-badge";
+<td data-label="${escapeHTML(t("type"))}">
+<span class="${typeClass}">
+${escapeHTML(typeText)}
+</span>
+</td>
 
+<td data-label="${escapeHTML(t("quantity"))}">
+${formatNumber(quantity)}
+</td>
 
-    const dateValue=
-      move.created_at ||
-      move.date ||
-      move.createdAt;
+<td data-label="${escapeHTML(t("workerHeader"))}">
+${escapeHTML(worker)}
+</td>
 
+`;
 
-    const dateText=
-      dateValue
-      ? formatDate(dateValue)
-      : "-";
+table.appendChild(tr);
 
-
-    const worker=
-      move.worker ||
-      move.worker_name ||
-      move.employee ||
-      "-";
-
-
-    const quantity=
-      Number(move.quantity || 0);
-
-
-    const tr=
-      document.createElement("tr");
-
-
-    tr.innerHTML=`
-
-      <td data-label="${escapeHTML(t("date"))}">
-        ${escapeHTML(dateText)}
-      </td>
-
-      <td data-label="${escapeHTML(t("historyProduct"))}">
-        ${escapeHTML(productName)}
-      </td>
-
-      <td data-label="${escapeHTML(t("type"))}">
-
-        <span class="${typeClass}">
-          ${escapeHTML(typeText)}
-        </span>
-
-      </td>
-
-      <td data-label="${escapeHTML(t("quantity"))}">
-        ${formatNumber(quantity)}
-      </td>
-
-      <td data-label="${escapeHTML(t("workerHeader"))}">
-        ${escapeHTML(worker)}
-      </td>
-
-    `;
-
-
-    table.appendChild(tr);
-
-  });
+});
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DATE
-   ========================================================= */
+===================================================== */
 
 function formatDate(value){
 
-  const date=
-    new Date(value);
+const date=new Date(value);
 
+if(Number.isNaN(date.getTime())){
+return String(value);
+}
 
-  if(Number.isNaN(date.getTime())){
-    return String(value);
-  }
+const locale=
+currentLanguage==="ar"
+?
+"ar-SA"
+:
+currentLanguage==="te"
+?
+"te-IN"
+:
+"en-US";
 
-
-  return date.toLocaleString(
-
-    currentLanguage==="ar"
-      ? "ar-SA"
-
-      : currentLanguage==="te"
-      ? "te-IN"
-
-      : "en-US",
-
-    {
-
-      year:"numeric",
-
-      month:"short",
-
-      day:"numeric",
-
-      hour:"2-digit",
-
-      minute:"2-digit"
-
-    }
-
-  );
+return date.toLocaleString(
+locale,
+{
+year:"numeric",
+month:"short",
+day:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
 
 }
 
 
-/* =========================================================
-   START APP
-   ========================================================= */
+/* =====================================================
+   START APPLICATION
+===================================================== */
 
 async function startApp(){
 
-  applyTranslations();
+document.documentElement.lang=currentLanguage;
 
+document.documentElement.dir=
+currentLanguage==="ar"
+?
+"rtl"
+:
+"ltr";
 
-  showStatus(
-    t("connecting"),
-    "success"
-  );
+applyTranslations();
 
+showStatus(
+t("connecting"),
+"success"
+);
 
-  await loadProducts();
+const productsOK=
+await loadProducts();
 
-  await loadHistory();
+const historyOK=
+await loadHistory();
 
+if(productsOK && historyOK){
 
-  applyTranslations();
+showStatus(
+t("ready"),
+"success"
+);
 
-
-  showStatus(
-    t("ready"),
-    "success"
-  );
+}
 
 }
 
 
-/* =========================================================
+/* =====================================================
    START
-   ========================================================= */
+===================================================== */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  startApp
+"DOMContentLoaded",
+startApp
 );
 
 </script>
