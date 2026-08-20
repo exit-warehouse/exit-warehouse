@@ -1664,6 +1664,7 @@ document.getElementById("minimumStock").value="0";
 ===================================================== */
 
 async function deleteProduct(id){
+async function deleteProduct(id){
 
 if(!confirm(t("confirmDelete"))){
 return;
@@ -1671,16 +1672,25 @@ return;
 
 try{
 
-const result=await supabaseClient
+const historyDelete = await supabaseClient
+.from("stock_transactions")
+.delete()
+.eq("product_id", id);
+
+if(historyDelete.error){
+throw historyDelete.error;
+}
+
+
+const result = await supabaseClient
 .from("products")
 .delete()
-.eq("id",id);
+.eq("id", id);
 
 if(result.error){
-
 throw result.error;
-
 }
+
 
 await loadProducts();
 await loadHistory();
@@ -1689,6 +1699,7 @@ showStatus(
 t("productDeleted"),
 "success"
 );
+
 
 }catch(error){
 
@@ -1796,13 +1807,15 @@ const result=await supabaseClient
 .from("stock_transactions")
 .insert([{
 
-product_id:productId,
+product_id: productId,
 
-transaction_type:type,
+product_name: product.name,
 
-quantity:quantity,
+transaction_type: type,
 
-worker:worker || null
+quantity: quantity,
+
+worker: worker || null
 
 }])
 .select()
