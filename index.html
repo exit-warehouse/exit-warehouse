@@ -1600,6 +1600,7 @@ const result=await supabaseClient
 .insert([{
 
 name:name,
+code:barcode || name,
 barcode:barcode || null,
 unit:unit || null,
 stock:startingStock,
