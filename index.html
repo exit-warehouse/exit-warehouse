@@ -1936,22 +1936,6 @@ if(updateStock.error){
 
 throw updateStock.error;
 
-}
-
-
-
-// SAVE HISTORY
-
-const movement =
-await supabaseClient
-.from("stock_transactions")
-.insert([{
-
-product_id:productId,
-product_name:product.name,
-transaction_type:type,
-quantity:quantity,
-worker:worker || null
 
 /* =====================================================
    STOCK MOVEMENT
