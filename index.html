@@ -389,9 +389,7 @@ html[dir="rtl"] td{
 
 <h1 id="appTitle">EXIT Warehouse</h1>
 
-<p id="appSubtitle">
-Inventory Management System
-</p>
+<p id="appSubtitle">Inventory Management System</p>
 
 <div class="language-switcher">
 
@@ -420,74 +418,49 @@ Inventory Management System
 <div class="cards">
 
 <div class="card total">
-
 <div class="card-title" id="totalProductsLabel">
 📦 Total Products
 </div>
-
-<div class="card-number" id="totalProducts">
-0
-</div>
-
+<div class="card-number" id="totalProducts">0</div>
 </div>
 
 <div class="card in">
-
 <div class="card-title" id="stockInLabel">
 🟢 Stock In
 </div>
-
-<div class="card-number" id="stockIn">
-0
-</div>
-
+<div class="card-number" id="stockIn">0</div>
 </div>
 
 <div class="card out">
-
 <div class="card-title" id="stockOutLabel">
 🔴 Stock Out
 </div>
-
-<div class="card-number" id="stockOut">
-0
-</div>
-
+<div class="card-number" id="stockOut">0</div>
 </div>
 
 <div class="card low">
-
 <div class="card-title" id="lowStockLabel">
 ⚠️ Low Stock
 </div>
-
-<div class="card-number" id="lowStock">
-0
+<div class="card-number" id="lowStock">0</div>
 </div>
 
 </div>
 
-</div>
 
 <!-- STOCK MOVEMENT -->
 
 <div class="section">
 
-<h2 id="stockMovementTitle">
-Stock Movement
-</h2>
+<h2 id="stockMovementTitle">Stock Movement</h2>
 
-<label id="productLabel">
-Product
-</label>
+<label id="productLabel">Product</label>
 
 <select id="productSelect">
 <option value="">Select product</option>
 </select>
 
-<label id="quantityLabel">
-Quantity
-</label>
+<label id="quantityLabel">Quantity</label>
 
 <input
 id="quantity"
@@ -496,9 +469,7 @@ min="0.01"
 step="any"
 placeholder="Enter quantity">
 
-<label id="workerLabel">
-Worker
-</label>
+<label id="workerLabel">Worker</label>
 
 <input
 id="worker"
@@ -511,58 +482,49 @@ placeholder="Enter worker name">
 id="stockInBtn"
 class="stock-in"
 onclick="makeMovement('in')">
-➕ Stock In
+🟢 Stock In
 </button>
 
 <button
 id="stockOutBtn"
 class="stock-out"
 onclick="makeMovement('out')">
-➖ Stock Out
+🔴 Stock Out
 </button>
 
 </div>
 
 </div>
 
+
 <!-- ADD PRODUCT -->
 
 <div class="section">
 
-<h2 id="addProductTitle">
-➕ Add Product
-</h2>
+<h2 id="addProductTitle">➕ Add Product</h2>
 
-<label id="productNameLabel">
-Product Name
-</label>
+<label id="productNameLabel">Product Name</label>
 
 <input
 id="productName"
 type="text"
 placeholder="Enter product name">
 
-<label id="barcodeLabel">
-Barcode / Code
-</label>
+<label id="barcodeLabel">Barcode / Code</label>
 
 <input
 id="barcode"
 type="text"
 placeholder="Enter barcode">
 
-<label id="unitLabel">
-Unit
-</label>
+<label id="unitLabel">Unit</label>
 
 <input
 id="unit"
 type="text"
 placeholder="Example: pcs, box, kg">
 
-<label id="startingStockLabel">
-Starting Stock
-</label>
+<label id="startingStockLabel">Starting Stock</label>
 
 <input
 id="startingStock"
@@ -571,9 +533,7 @@ min="0"
 step="any"
 value="0">
 
-<label id="minimumStockLabel">
-Minimum Stock
-</label>
+<label id="minimumStockLabel">Minimum Stock</label>
 
 <input
 id="minimumStock"
@@ -602,6 +562,7 @@ onclick="clearProductForm()">
 
 </div>
 
+
 <!-- LOW STOCK -->
 
 <div class="section">
@@ -616,13 +577,12 @@ onclick="clearProductForm()">
 
 </div>
 
+
 <!-- PRODUCTS -->
 
 <div class="section">
 
-<h2 id="productsTitle">
-📦 Products
-</h2>
+<h2 id="productsTitle">📦 Products</h2>
 
 <input
 id="searchProduct"
@@ -637,7 +597,6 @@ oninput="renderProducts()">
 <thead>
 
 <tr>
-
 <th id="thProduct">Product</th>
 <th id="thBarcode">Barcode</th>
 <th id="thUnit">Unit</th>
@@ -645,7 +604,6 @@ oninput="renderProducts()">
 <th id="thMinimum">Minimum</th>
 <th id="thStatus">Status</th>
 <th id="thAction">Action</th>
-
 </tr>
 
 </thead>
@@ -664,6 +622,7 @@ oninput="renderProducts()">
 
 </div>
 
+
 <!-- HISTORY -->
 
 <div class="section">
@@ -679,13 +638,11 @@ oninput="renderProducts()">
 <thead>
 
 <tr>
-
 <th id="thDate">Date</th>
 <th id="thHistoryProduct">Product</th>
 <th id="thType">Type</th>
 <th id="thQuantity">Quantity</th>
 <th id="thWorker">Worker</th>
-
 </tr>
 
 </thead>
@@ -710,9 +667,11 @@ oninput="renderProducts()">
 © 2026 EXIT Warehouse
 </footer>
 
+
 <script>
 
 "use strict";
+
 
 /* =====================================================
    SUPABASE
@@ -732,7 +691,7 @@ SUPABASE_PUBLISHABLE_KEY
 
 
 /* =====================================================
-   APP DATA
+   DATA
 ===================================================== */
 
 let products = [];
@@ -835,9 +794,12 @@ notEnough:"Not enough stock. Current stock: ",
 added:"added to",
 removed:"removed from",
 
+stockText:"Stock",
+
 confirmDelete:"Are you sure you want to delete this product?"
 
 },
+
 
 ar:{
 
@@ -926,9 +888,12 @@ notEnough:"المخزون غير كافٍ. المخزون الحالي: ",
 added:"تمت الإضافة إلى",
 removed:"تم الإخراج من",
 
+stockText:"المخزون",
+
 confirmDelete:"هل أنت متأكد أنك تريد حذف هذا المنتج؟"
 
 },
+
 
 te:{
 
@@ -1017,6 +982,8 @@ notEnough:"తగినంత స్టాక్ లేదు. ప్రస్�
 added:"జోడించబడింది",
 removed:"తీసివేయబడింది",
 
+stockText:"స్టాక్",
+
 confirmDelete:"మీరు ఈ ఉత్పత్తిని తొలగించాలనుకుంటున్నారా?"
 
 }
@@ -1025,17 +992,21 @@ confirmDelete:"మీరు ఈ ఉత్పత్తిని తొలగి�
 
 
 /* =====================================================
-   HELPERS
+   TRANSLATION HELPER
 ===================================================== */
 
 function t(key){
 
-return translations[currentLanguage]?.[key] ||
-translations.en[key] ||
-key;
+return translations[currentLanguage]?.[key]
+|| translations.en[key]
+|| key;
 
 }
 
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHTML(value){
 
@@ -1048,6 +1019,10 @@ return String(value ?? "")
 
 }
 
+
+/* =====================================================
+   NUMBER FORMAT
+===================================================== */
 
 function formatNumber(value){
 
@@ -1063,6 +1038,10 @@ return Number.isInteger(n)
 
 }
 
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 function showStatus(message,type="success"){
 
@@ -1115,132 +1094,66 @@ renderHistory();
 }
 
 
+/* =====================================================
+   APPLY TRANSLATIONS
+===================================================== */
+
 function applyTranslations(){
 
 document.title=t("pageTitle");
 
-document.getElementById("appTitle").textContent=
-t("pageTitle");
+document.getElementById("appTitle").textContent=t("pageTitle");
+document.getElementById("appSubtitle").textContent=t("subtitle");
 
-document.getElementById("appSubtitle").textContent=
-t("subtitle");
+document.getElementById("totalProductsLabel").textContent=t("totalProducts");
+document.getElementById("stockInLabel").textContent=t("stockIn");
+document.getElementById("stockOutLabel").textContent=t("stockOut");
+document.getElementById("lowStockLabel").textContent=t("lowStock");
 
-document.getElementById("totalProductsLabel").textContent=
-t("totalProducts");
+document.getElementById("stockMovementTitle").textContent=t("stockMovement");
 
-document.getElementById("stockInLabel").textContent=
-t("stockIn");
+document.getElementById("productLabel").textContent=t("product");
+document.getElementById("quantityLabel").textContent=t("quantity");
+document.getElementById("workerLabel").textContent=t("worker");
 
-document.getElementById("stockOutLabel").textContent=
-t("stockOut");
+document.getElementById("addProductTitle").textContent=t("addProduct");
 
-document.getElementById("lowStockLabel").textContent=
-t("lowStock");
+document.getElementById("productNameLabel").textContent=t("productName");
+document.getElementById("barcodeLabel").textContent=t("barcode");
+document.getElementById("unitLabel").textContent=t("unit");
+document.getElementById("startingStockLabel").textContent=t("startingStock");
+document.getElementById("minimumStockLabel").textContent=t("minimumStock");
 
-document.getElementById("stockMovementTitle").textContent=
-t("stockMovement");
+document.getElementById("lowStockAlertTitle").textContent=t("lowStockAlert");
+document.getElementById("productsTitle").textContent=t("products");
+document.getElementById("historyTitle").textContent=t("historyTitle");
 
-document.getElementById("productLabel").textContent=
-t("product");
+document.getElementById("stockInBtn").textContent=t("stockIn");
+document.getElementById("stockOutBtn").textContent=t("stockOut");
 
-document.getElementById("quantityLabel").textContent=
-t("quantity");
+document.getElementById("addProductBtn").textContent=t("addProduct");
+document.getElementById("clearBtn").textContent=t("clear");
 
-document.getElementById("workerLabel").textContent=
-t("worker");
+document.getElementById("thProduct").textContent=t("product");
+document.getElementById("thBarcode").textContent=t("code");
+document.getElementById("thUnit").textContent=t("unit");
+document.getElementById("thStock").textContent=t("stock");
+document.getElementById("thMinimum").textContent=t("minimum");
+document.getElementById("thStatus").textContent=t("status");
+document.getElementById("thAction").textContent=t("action");
 
-document.getElementById("addProductTitle").textContent=
-t("addProduct");
+document.getElementById("thDate").textContent=t("date");
+document.getElementById("thHistoryProduct").textContent=t("historyProduct");
+document.getElementById("thType").textContent=t("type");
+document.getElementById("thQuantity").textContent=t("quantity");
+document.getElementById("thWorker").textContent=t("workerHeader");
 
-document.getElementById("productNameLabel").textContent=
-t("productName");
-
-document.getElementById("barcodeLabel").textContent=
-t("barcode");
-
-document.getElementById("unitLabel").textContent=
-t("unit");
-
-document.getElementById("startingStockLabel").textContent=
-t("startingStock");
-
-document.getElementById("minimumStockLabel").textContent=
-t("minimumStock");
-
-document.getElementById("lowStockAlertTitle").textContent=
-t("lowStockAlert");
-
-document.getElementById("productsTitle").textContent=
-t("products");
-
-document.getElementById("historyTitle").textContent=
-t("historyTitle");
-
-document.getElementById("stockInBtn").textContent=
-t("stockIn");
-
-document.getElementById("stockOutBtn").textContent=
-t("stockOut");
-
-document.getElementById("addProductBtn").textContent=
-t("addProduct");
-
-document.getElementById("clearBtn").textContent=
-t("clear");
-
-document.getElementById("thProduct").textContent=
-t("product");
-
-document.getElementById("thBarcode").textContent=
-t("code");
-
-document.getElementById("thUnit").textContent=
-t("unit");
-
-document.getElementById("thStock").textContent=
-t("stock");
-
-document.getElementById("thMinimum").textContent=
-t("minimum");
-
-document.getElementById("thStatus").textContent=
-t("status");
-
-document.getElementById("thAction").textContent=
-t("action");
-
-document.getElementById("thDate").textContent=
-t("date");
-
-document.getElementById("thHistoryProduct").textContent=
-t("historyProduct");
-
-document.getElementById("thType").textContent=
-t("type");
-
-document.getElementById("thQuantity").textContent=
-t("quantity");
-
-document.getElementById("thWorker").textContent=
-t("workerHeader");
-
-document.getElementById("productName").placeholder=
-t("enterProductName");
-
-document.getElementById("barcode").placeholder=
-t("enterBarcode");
-
-document.getElementById("unit").placeholder=
-t("unitPlaceholder");
-
-document.getElementById("quantity").placeholder=
-t("enterQuantity");
-
-document.getElementById("worker").placeholder=
-t("workerPlaceholder");
-
-document.getElementById("searchProduct").placeholder=
-t("search");
+document.getElementById("productName").placeholder=t("enterProductName");
+document.getElementById("barcode").placeholder=t("enterBarcode");
+document.getElementById("unit").placeholder=t("unitPlaceholder");
+document.getElementById("quantity").placeholder=t("enterQuantity");
+document.getElementById("worker").placeholder=t("workerPlaceholder");
+document.getElementById("searchProduct").placeholder=t("search");
 
 }
 
@@ -1426,7 +1339,7 @@ const option=document.createElement("option");
 option.value=product.id;
 
 option.textContent=
-product.name +
+product.name+
 (
 product.barcode
 ? " — "+product.barcode
@@ -1537,8 +1450,7 @@ isLow
 
 <button
 class="delete-btn"
-type="button"
-data-id="${escapeHTML(product.id)}">
+type="button">
 🗑️ ${escapeHTML(t("delete"))}
 </button>
 
@@ -1603,12 +1515,12 @@ ${escapeHTML(product.name)}
 
 <br>
 
-${escapeHTML(t("stockText") || t("stock"))}:
+${escapeHTML(t("stockText"))}:
 ${formatNumber(product.stock)}
 
 &nbsp; | &nbsp;
 
-${escapeHTML(t("minimum") || "Minimum")}:
+${escapeHTML(t("minimum"))}:
 ${formatNumber(product.minimum_stock)}
 
 `;
@@ -1703,25 +1615,9 @@ throw result.error;
 
 }
 
-if(result.data){
-
-products.push(result.data);
-
-products.sort((a,b)=>
-String(a.name || "")
-.localeCompare(
-String(b.name || "")
-)
-);
-
-}
+await loadProducts();
 
 clearProductForm();
-
-updateDashboard();
-updateProductSelect();
-renderProducts();
-renderLowStock();
 
 showStatus(
 t("productAdded"),
@@ -1785,25 +1681,8 @@ throw result.error;
 
 }
 
-products=products.filter(product=>
-String(product.id)!==
-String(id)
-);
-
-moves=moves.filter(move=>
-String(
-move.product_id ||
-move.product ||
-""
-)!==
-String(id)
-);
-
-updateDashboard();
-updateProductSelect();
-renderProducts();
-renderLowStock();
-renderHistory();
+await loadProducts();
+await loadHistory();
 
 showStatus(
 t("productDeleted"),
@@ -1912,7 +1791,7 @@ button.disabled=true;
 
 try{
 
-let result=await supabaseClient
+const result=await supabaseClient
 .from("stock_transactions")
 .insert([{
 
@@ -1928,42 +1807,11 @@ worker:worker || null
 .select()
 .single();
 
-if(
-result.error &&
-/transaction_type/i.test(
-result.error.message || ""
-)
-){
-
-result=await supabaseClient
-.from("stock_transactions")
-.insert([{
-
-product_id:productId,
-
-type:type,
-
-quantity:quantity,
-
-worker:worker || null
-
-}])
-.select()
-.single();
-
-}
-
 if(result.error){
 
 throw result.error;
 
 }
-
-/*
-  Reload database values.
-  Your Supabase trigger/function should
-  update products.stock.
-*/
 
 await loadProducts();
 await loadHistory();
@@ -2040,10 +1888,7 @@ product
 ?
 product.name
 :
-(
-move.product_name ||
-"-"
-);
+"-";
 
 const rawType=String(
 move.transaction_type ||
@@ -2164,7 +2009,7 @@ minute:"2-digit"
 
 
 /* =====================================================
-   START APPLICATION
+   START APP
 ===================================================== */
 
 async function startApp(){
